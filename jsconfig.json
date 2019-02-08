@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "web-app/*": [
+        "workspaces/web-app/*",
+      ],
+      "test/*": [
+        "workspaces/test/*"
+      ]
+    }
+  }
+}

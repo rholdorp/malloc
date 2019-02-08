@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "name": "malloc",
+  "env": {
+    "FIREBASE_PWD": "@malloc-firebase"
+  },
+  "builds": [{ "src": "workspaces/web-app/package.json", "use": "@now/next" }],
+  "routes": [
+    { "src": "/(.*)", "dest": "/workspaces/web-app/$1" }
+  ],
+  "alias": "malloc"
+}

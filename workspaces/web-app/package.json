@@ -1,0 +1,47 @@
+{
+  "private": true,
+  "name": "web-app",
+  "version": "1.0.0",
+  "description": "nextjs-based frontend",
+  "author": "Marcin Czenko",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/runtime": "^7.3.1",
+    "@cogitojs/cogito-attestations": "^0.2.23",
+    "@cogitojs/cogito-encryption": "^0.2.23",
+    "@cogitojs/cogito-identity": "^0.2.23",
+    "@cogitojs/cogito-react-ui": "^0.2.23",
+    "@cogitojs/crypto": "^0.2.23",
+    "@cogitojs/telepath-js": "^0.2.23",
+    "@emotion/core": "^10.0.1",
+    "@emotion/styled": "^10.0.1",
+    "@react-frontend-developer/buffers": "^1.0.17",
+    "@react-frontend-developer/react-layout-helpers": "^1.0.17",
+    "babel-polyfill": "^6.26.0",
+    "next": "^8.0.0-canary.18",
+    "prop-types": "^15.6.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-media": "^1.9.2",
+    "request": "^2.88.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.84.0"
+  },
+  "scripts": {
+    "dev": "next",
+    "now-build": "next build",
+    "start": "next start"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@emotion/babel-preset-css-prop": "^10.0.6",
+    "@zeit/next-css": "^1.0.1",
+    "file-loader": "^3.0.1",
+    "jest-dom": "^2.1.1",
+    "jest-emotion": "^10.0.1",
+    "react-test-renderer": "^16.6.1",
+    "react-testing-library": "^5.2.3",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.29.0"
+  }
+}
