@@ -38,7 +38,7 @@ export default class MyApp extends App {
           <script src='https://www.gstatic.com/firebasejs/5.8.2/firebase-firestore.js' />
         </Head>
         <Global styles={{ 'html,body': {
-          backgroundColor: 'black',
+          backgroundColor: 'white',
           margin: 0,
           padding: 0
         } }} />
