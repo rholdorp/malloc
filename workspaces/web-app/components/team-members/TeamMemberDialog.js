@@ -1,9 +1,9 @@
 import React from 'react'
 
 import { Dialog } from '../dialogs'
-import { AssignmentDialogContent } from './AssignmentDialogContent'
+import { TeamMemberDialogContent } from './TeamMemberDialogContent'
 
-const AssignmentDialog = ({
+const TeamMemberDialog = ({
   buttonStyling,
   buttonDisabled,
   buttonText,
@@ -18,7 +18,7 @@ const AssignmentDialog = ({
     onOpen={onOpen}
     onDone={onDone}
     onCancel={onCancel}>
-    <AssignmentDialogContent onDone={onDone} buttonStyling={buttonStyling} />
+    <TeamMemberDialogContent onDone={onDone} buttonStyling={buttonStyling} />
   </Dialog>
 )
-export { AssignmentDialog }
+export { TeamMemberDialog }

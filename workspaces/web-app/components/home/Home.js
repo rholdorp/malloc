@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { FadingValueBox } from '../animations'
 import { AssignmentDialog } from '../assignments'
+import { TeamMemberDialog } from '../team-members'
 
 const getCurrentlySignedUser = () => {
   const user = firebase.auth().currentUser
@@ -29,6 +30,24 @@ const createAssignment = async assignment => {
   }
 }
 
+const createTeamMember = async teamMember => {
+  try {
+    const uid = getCurrentlySignedUser()
+    if (uid) {
+      const { name, availability } = teamMember
+      const db = firebase.firestore()
+      await db.collection('teamMembers').add({
+        name,
+        availability
+      })
+    } else {
+      throw new Error('Having trouble accesing Firebase. Please try again...')
+    }
+  } catch (e) {
+    console.error(e)
+  }
+}
+
 // const read = async tag => {
 //   const uid = getCurrentlySignedUser()
 //   if (uid) {
@@ -42,31 +61,51 @@ const createAssignment = async assignment => {
 // }
 class Home extends Component {
   state = {
-    open: false
+    assignmentDialogOpen: false,
+    teamMemberDialogOpen: false
   }
 
   addAssignment = async assignment => {
-    this.setState({ open: false })
+    this.setState({ assignmentDialogOpen: false })
     await createAssignment(assignment)
   }
 
+  addTeamMember = async teamMember => {
+    this.setState({ teamMemberDialogOpen: false })
+    await createTeamMember(teamMember)
+  }
+
   openAssignmentDialog = () => {
-    this.setState({ open: true })
+    this.setState({ assignmentDialogOpen: true })
   }
 
   onCancelAddingAssignment = () => {
-    this.setState({ open: false })
+    this.setState({ assignmentDialogOpen: false })
+  }
+
+  openTeamMemberDialog = () => {
+    this.setState({ teamMemberDialogOpen: true })
+  }
+
+  onCancelAddingTeamMember = () => {
+    this.setState({ teamMemberDialogOpen: false })
   }
 
   render () {
     return (
       <FadingValueBox>
-        <AssignmentDialog open={this.state.open}
+        <AssignmentDialog open={this.state.assignmentDialogOpen}
           buttonText='Add assignment...'
           buttonStyling={{ basic: true, color: 'black' }}
           onOpen={this.openAssignmentDialog}
           onDone={this.addAssignment}
           onCancel={this.onCancelAddingAssignment} />
+        <TeamMemberDialog open={this.state.teamMemberDialogOpen}
+          buttonText='Add team member...'
+          buttonStyling={{ basic: true, color: 'black' }}
+          onOpen={this.openTeamMemberDialog}
+          onDone={this.addTeamMember}
+          onCancel={this.onCancelAddingTeamMember} />
       </FadingValueBox>
     )
   }
