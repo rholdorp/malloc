@@ -59,6 +59,11 @@ exports[`index has proper styling 1`] = `
         >
           Add assignment...
         </button>
+        <button
+          class="ui black basic button"
+        >
+          Add team member...
+        </button>
       </div>
     </div>
   </div>
