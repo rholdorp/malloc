@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`index has proper styling 1`] = `
-.emotion-0 {
+.emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -21,14 +21,45 @@ exports[`index has proper styling 1`] = `
   width: 100vw;
 }
 
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  -ms-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 100%;
+  opacity: 1;
+  -webkit-transition: opacity 1s ease-in-out 0s;
+  transition: opacity 1s ease-in-out 0s;
+}
+
 <div>
   <div
-    class="emotion-0 emotion-1"
+    class="emotion-2 emotion-3"
   >
     <div
       css="[object Object]"
     >
-      Hello!
+      <div
+        class="emotion-0 emotion-1"
+        opacity="1"
+      >
+        <button
+          class="ui black basic button"
+        >
+          Add assignment...
+        </button>
+      </div>
     </div>
   </div>
 </div>
