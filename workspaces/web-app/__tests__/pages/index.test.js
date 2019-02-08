@@ -14,10 +14,10 @@ describe('index', () => {
     expect(container).toMatchSnapshot()
   })
 
-  it('displays secret form', () => {
+  it('displays something', () => {
     const { getByText } = render(<Home />)
     // for the fading animation to finish
     jest.runAllTimers()
-    expect(getByText(/hello/i)).toBeInTheDocument()
+    expect(getByText(/add assignment/i)).toBeInTheDocument()
   })
 })
