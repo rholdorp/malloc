@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Modal } from 'semantic-ui-react'
+import { AssignmentDialogContent } from './AssignmentDialogContent'
 import PropTypes from 'prop-types'
 
 class AssignmentDialog extends React.Component {
@@ -14,19 +15,16 @@ class AssignmentDialog extends React.Component {
   }
 
   onOpen = () => {
-    console.log('onOpen')
     const { onOpen } = this.props
     onOpen && onOpen()
   }
 
-  onDone = () => {
-    console.log('onDone')
+  onDone = assignment => {
     const { onDone } = this.props
-    onDone && onDone()
+    onDone && onDone(assignment)
   }
 
   onCancel = () => {
-    console.log('onCancel')
     const { onCancel } = this.props
     onCancel && onCancel()
   }
@@ -52,7 +50,7 @@ class AssignmentDialog extends React.Component {
         <Modal.Header>Add new assignment</Modal.Header>
         <Modal.Content>
           <Modal.Description>
-            <p>Hello!</p>
+            <AssignmentDialogContent onDone={this.onDone} buttonStyling={buttonStyling} />
           </Modal.Description>
         </Modal.Content>
       </Modal>
