@@ -1,4 +1,4 @@
-import { getCurrentlySignedUser } from '../../services/firebase'
+import { getCurrentlySignedUser } from '../../../services/firebase'
 
 const createAssignment = async assignment => {
   try {
