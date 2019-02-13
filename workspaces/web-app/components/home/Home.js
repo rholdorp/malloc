@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { FadingValueBox } from '../animations'
-import { TeamMemberDialog } from '../team-members'
 import { Centered, Row } from '@react-frontend-developer/react-layout-helpers'
 import { Input } from 'semantic-ui-react'
 
@@ -8,52 +7,9 @@ import { HomeGrid, HeaderGridItem, ActionsGridItem, SearchGridItem,
   ResultsGridItem, FooterGridItem } from './HomeGrid'
   
 import { AddAssignment } from '../assignments'
-
-const getCurrentlySignedUser = () => {
-  const user = firebase.auth().currentUser
-  if (user) {
-    return user.uid
-  } else {
-    return null
-  }
-}
-
-const createTeamMember = async teamMember => {
-  try {
-    const uid = getCurrentlySignedUser()
-    if (uid) {
-      const { name, availability } = teamMember
-      const db = firebase.firestore()
-      await db.collection('teamMembers').add({
-        name,
-        availability
-      })
-    } else {
-      throw new Error('Having trouble accesing Firebase. Please try again...')
-    }
-  } catch (e) {
-    console.error(e)
-  }
-}
+import { AddTeamMember } from '../team-members'
 
 class Home extends Component {
-  state = {    
-    teamMemberDialogOpen: false
-  }
-
-  addTeamMember = async teamMember => {
-    this.setState({ teamMemberDialogOpen: false })
-    await createTeamMember(teamMember)
-  }
-
-  openTeamMemberDialog = () => {
-    this.setState({ teamMemberDialogOpen: true })
-  }
-
-  onCancelAddingTeamMember = () => {
-    this.setState({ teamMemberDialogOpen: false })
-  }
-
   render () {
     return (
       <FadingValueBox>
@@ -63,12 +19,7 @@ class Home extends Component {
           </HeaderGridItem>
           <ActionsGridItem>
             <AddAssignment />
-            <TeamMemberDialog open={this.state.teamMemberDialogOpen}
-              buttonText='Add team member...'
-              buttonStyling={{ secondary: true, color: 'black' }}
-              onOpen={this.openTeamMemberDialog}
-              onDone={this.addTeamMember}
-              onCancel={this.onCancelAddingTeamMember} />
+            <AddTeamMember />
           </ActionsGridItem>
           <SearchGridItem>
             <Input 
