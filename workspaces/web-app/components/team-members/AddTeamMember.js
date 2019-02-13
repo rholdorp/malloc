@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { TeamMemberDialog } from './TeamMemberDialog'
 
 import { createTeamMember } from './db'

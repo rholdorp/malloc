@@ -17,9 +17,9 @@ const gridItemLayout = {
   padding: '5px'
 }
 
-const HomeGrid = styled.div(grid.container, {height: '100vh', width: '100%', padding: '5px', boxSizing: 'border-box'})
+const HomeGrid = styled.div(grid.container, { height: '100vh', width: '100%', padding: '5px', boxSizing: 'border-box' })
 
-const HeaderGridItem = styled.div(grid.header, gridItemLayout, { justifyContent: 'flex-end'})
+const HeaderGridItem = styled.div(grid.header, gridItemLayout, { justifyContent: 'flex-end' })
 
 const ActionsGridItem = styled.div(grid.actions, gridItemLayout, { justifyContent: 'flex-start' })
 
@@ -34,5 +34,5 @@ const ResultsGridItem = styled.div(grid.results, gridItemLayout, {
 
 const FooterGridItem = styled.div(grid.footer, gridItemLayout)
 
-export { HomeGrid, HeaderGridItem, ActionsGridItem, SearchGridItem, 
+export { HomeGrid, HeaderGridItem, ActionsGridItem, SearchGridItem,
   ResultsGridItem, FooterGridItem }
