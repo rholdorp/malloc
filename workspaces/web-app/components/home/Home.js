@@ -94,6 +94,7 @@ class Home extends Component {
   render () {
     return (
       <FadingValueBox>
+        <h1>This is malloc</h1>
         <AssignmentDialog open={this.state.assignmentDialogOpen}
           buttonText='Add assignment...'
           buttonStyling={{ basic: true, color: 'black' }}

@@ -54,6 +54,9 @@ exports[`index has proper styling 1`] = `
         class="emotion-0 emotion-1"
         opacity="1"
       >
+        <h1>
+          This is malloc
+        </h1>
         <button
           class="ui black basic button"
         >
