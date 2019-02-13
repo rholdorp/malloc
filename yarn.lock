@@ -1700,6 +1700,11 @@
   resolved "https://registry.yarnpkg.com/@react-frontend-developer/buffers/-/buffers-1.0.17.tgz#11f89e60f26e859b66b94ed138431b78b653dc7f"
   integrity sha512-PI3ukhpsaeWizXg05F9lL8DNdwsMbpXYusG/8Qh1l6PIVrooRVc9Ij7Rhtt4EgHsN1D0/DkvxuKGLUJTljM2JQ==
 
+"@react-frontend-developer/css-grid-helper@^1.0.17":
+  version "1.0.17"
+  resolved "https://registry.yarnpkg.com/@react-frontend-developer/css-grid-helper/-/css-grid-helper-1.0.17.tgz#5f79febb830035b470320e06f8dac7f01a10c869"
+  integrity sha512-7FKeEjHAqsP5t0pLm5vJmD+OgWU0+xqWx7n1XtL8WLdJcvZiIBvItBr01S27w9lH8gA71CuNlBEEFaJM/ezJwg==
+
 "@react-frontend-developer/react-layout-helpers@^1.0.14", "@react-frontend-developer/react-layout-helpers@^1.0.17":
   version "1.0.17"
   resolved "https://registry.yarnpkg.com/@react-frontend-developer/react-layout-helpers/-/react-layout-helpers-1.0.17.tgz#57d7ddc49784bd4de9cb4b304fd81883b8c00688"

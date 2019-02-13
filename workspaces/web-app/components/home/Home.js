@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import { FadingValueBox } from '../animations'
 import { AssignmentDialog } from '../assignments'
 import { TeamMemberDialog } from '../team-members'
+import { Centered, Row } from '@react-frontend-developer/react-layout-helpers'
+import { Input } from 'semantic-ui-react'
+
+import { HomeGrid, HeaderGridItem, ActionsGridItem, SearchGridItem, 
+  ResultsGridItem, FooterGridItem } from './HomeGrid'
 
 const getCurrentlySignedUser = () => {
   const user = firebase.auth().currentUser
@@ -94,19 +99,39 @@ class Home extends Component {
   render () {
     return (
       <FadingValueBox>
-        <h1>This is malloc</h1>
-        <AssignmentDialog open={this.state.assignmentDialogOpen}
-          buttonText='Add assignment...'
-          buttonStyling={{ basic: true, color: 'black' }}
-          onOpen={this.openAssignmentDialog}
-          onDone={this.addAssignment}
-          onCancel={this.onCancelAddingAssignment} />
-        <TeamMemberDialog open={this.state.teamMemberDialogOpen}
-          buttonText='Add team member...'
-          buttonStyling={{ basic: true, color: 'black' }}
-          onOpen={this.openTeamMemberDialog}
-          onDone={this.addTeamMember}
-          onCancel={this.onCancelAddingTeamMember} />
+        <HomeGrid>
+          <HeaderGridItem>
+            <h1 css={{ color: '#ff00cc' }}>/&lt;malloc&gt;</h1>
+          </HeaderGridItem>
+          <ActionsGridItem>
+            <AssignmentDialog open={this.state.assignmentDialogOpen}
+              buttonText='Add assignment...'
+              buttonStyling={{ secondary: true, color: 'black' }}
+              onOpen={this.openAssignmentDialog}
+              onDone={this.addAssignment}
+              onCancel={this.onCancelAddingAssignment} />
+            <TeamMemberDialog open={this.state.teamMemberDialogOpen}
+              buttonText='Add team member...'
+              buttonStyling={{ secondary: true, color: 'black' }}
+              onOpen={this.openTeamMemberDialog}
+              onDone={this.addTeamMember}
+              onCancel={this.onCancelAddingTeamMember} />
+          </ActionsGridItem>
+          <SearchGridItem>
+            <Input 
+              action={{ color: 'black', icon: 'search' }}
+              actionPosition='left'
+              placeholder='Search...'
+              css={{ width:'80%' }}
+            />
+          </SearchGridItem>
+          <ResultsGridItem>
+            Here come search results...
+          </ResultsGridItem>
+          <FooterGridItem css={{ color: '#ff00cc'}}>
+            © 2018 by Malloc
+          </FooterGridItem>
+        </HomeGrid>
       </FadingValueBox>
     )
   }
