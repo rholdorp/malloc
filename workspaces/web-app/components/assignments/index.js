@@ -1,1 +1,1 @@
-export { AssignmentDialog } from './AssignmentDialog'
+export { AddAssignment } from './AddAssignment'

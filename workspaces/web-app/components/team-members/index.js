@@ -1,1 +1,1 @@
-export { TeamMemberDialog } from './TeamMemberDialog'
+export { AddTeamMember } from './AddTeamMember'
