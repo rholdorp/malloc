@@ -15,3 +15,7 @@ describe('Home', () => {
     expect(getByText(/malloc/i)).toBeInTheDocument()
   })
 })
+<<<<<<< Updated upstream
+=======
+ 
+>>>>>>> Stashed changes
