@@ -1,14 +1,13 @@
 import { getCurrentlySignedUser } from '../../../services/firebase'
 
-const createAssignment = async assignment => {
+const createAssignment = async (assignmentName, assignmentNumber) => {
   try {
     const uid = getCurrentlySignedUser()
     if (uid) {
-      const { assignmentName, projectNumber } = assignment
       const db = firebase.firestore()
       await db.collection('assignments').add({
         assignmentName,
-        projectNumber
+        assignmentNumber
       })
     } else {
       throw new Error('Having trouble accesing Firebase. Please try again...')

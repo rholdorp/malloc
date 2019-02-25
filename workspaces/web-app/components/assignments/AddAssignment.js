@@ -11,9 +11,9 @@ const AddAssignment = () => {
       buttonText='Add assignment...'
       buttonStyling={{ secondary: true, color: 'black' }}
       onOpen={() => setOpen(true)}
-      onDone={async assignment => {
+      onDone={async (assignmentName, assignmentNumber) => {
         setOpen(false)
-        await createAssignment(assignment)
+        await createAssignment(assignmentName, assignmentNumber)
       }}
       onCancel={() => setOpen(false)} />
   )
