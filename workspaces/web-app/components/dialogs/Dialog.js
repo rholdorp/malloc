@@ -18,12 +18,12 @@ const Dialog = ({
       <Button {...buttonStyling}
         disabled={buttonDisabled}
         onClick={onOpen}>
-        {buttonText || 'New...'}
+        {buttonText || 'New'}
       </Button>
     }
     onClose={onCancel}
     closeIcon >
-    <Modal.Header>{modalTitle || 'New ...'}</Modal.Header>
+    <Modal.Header>{modalTitle || 'New'}</Modal.Header>
     <Modal.Content>
       <Modal.Description>
         { children }
