@@ -11,9 +11,9 @@ const AddTeamMember = () => {
       buttonText='Add team member...'
       buttonStyling={{ secondary: true, color: 'black' }}
       onOpen={() => setOpen(true)}
-      onDone={async teamMember => {
+      onDone={async (name, availability) => {
         setOpen(false)
-        await createTeamMember(teamMember)
+        await createTeamMember(name, availability)
       }}
       onCancel={() => setOpen(false)} />
   )

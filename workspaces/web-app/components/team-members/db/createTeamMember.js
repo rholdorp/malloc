@@ -1,10 +1,9 @@
 import { getCurrentlySignedUser } from '../../../services/firebase'
 
-const createTeamMember = async teamMember => {
+const createTeamMember = async (name, availability) => {
   try {
     const uid = getCurrentlySignedUser()
     if (uid) {
-      const { name, availability } = teamMember
       const db = firebase.firestore()
       await db.collection('teamMembers').add({
         name,
