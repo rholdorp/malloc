@@ -7,6 +7,7 @@ const AssignmentDialog = ({
   buttonStyling,
   buttonDisabled,
   buttonText,
+  modalTitle,
   open,
   onOpen = () => {},
   onDone = () => {},
@@ -14,6 +15,7 @@ const AssignmentDialog = ({
 }) => (
   <Dialog buttonStyling={buttonStyling}
     buttonText={buttonText}
+    modalTitle={modalTitle}
     open={open}
     onOpen={onOpen}
     onDone={onDone}

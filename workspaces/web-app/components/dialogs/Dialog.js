@@ -7,6 +7,7 @@ const Dialog = ({
   buttonStyling,
   buttonDisabled,
   buttonText,
+  modalTitle,
   open,
   onOpen = () => {},
   onDone = () => {},
@@ -22,7 +23,7 @@ const Dialog = ({
     }
     onClose={onCancel}
     closeIcon >
-    <Modal.Header>Add new assignment</Modal.Header>
+    <Modal.Header>{modalTitle || 'New ...'}</Modal.Header>
     <Modal.Content>
       <Modal.Description>
         { children }

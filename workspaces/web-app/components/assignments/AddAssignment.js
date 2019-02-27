@@ -9,6 +9,7 @@ const AddAssignment = () => {
   return (
     <AssignmentDialog open={open}
       buttonText='Add assignment...'
+      modalTitle='Add assignment'
       buttonStyling={{ secondary: true, color: 'black' }}
       onOpen={() => setOpen(true)}
       onDone={async (assignmentName, assignmentNumber) => {
