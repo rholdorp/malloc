@@ -10,7 +10,7 @@ const AssignmentDialogContent = props => {
     const { onDone } = props
     onDone && onDone(assignmentName, assignmentNumber)
   }
-  
+
   const { buttonStyling } = props
   return (
     <Centered>

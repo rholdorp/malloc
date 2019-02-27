@@ -3,10 +3,9 @@ import { Button, Header, Form } from 'semantic-ui-react'
 import { Centered } from '@react-frontend-developer/react-layout-helpers'
 
 const TeamMemberDialogContent = props => {
-  
   const [name, setName] = useState('')
   const [availability, setAvailability] = useState('')
-  
+
   const onDone = () => {
     const { onDone } = props
 
@@ -40,6 +39,4 @@ const TeamMemberDialogContent = props => {
     </Centered>
   )
 }
-
-
 export { TeamMemberDialogContent }
