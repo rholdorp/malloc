@@ -5,6 +5,7 @@ import { Input } from 'semantic-ui-react'
 import { HomeGrid, HeaderGridItem, ActionsGridItem, SearchGridItem,
   ResultsGridItem, FooterGridItem } from './HomeGrid'
 import { AddAssignment } from '../assignments'
+import { AddAllocation } from '../allocations'
 import { AddTeamMember } from '../team-members'
 
 const Home = () => (
@@ -16,6 +17,7 @@ const Home = () => (
       <ActionsGridItem>
         <AddAssignment />
         <AddTeamMember />
+        <AddAllocation />
       </ActionsGridItem>
       <SearchGridItem>
         <Input
@@ -29,7 +31,7 @@ const Home = () => (
         Here come search results...
       </ResultsGridItem>
       <FooterGridItem css={{ color: '#ff00cc' }}>
-        © 2018 by Malloc
+        © 2019 by Malloc
       </FooterGridItem>
     </HomeGrid>
   </FadingValueBox>
