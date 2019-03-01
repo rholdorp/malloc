@@ -12,9 +12,9 @@ const AddAssignment = () => {
       modalTitle='Add assignment'
       buttonStyling={{ secondary: true, color: 'black' }}
       onOpen={() => setOpen(true)}
-      onDone={async (assignmentName, assignmentNumber) => {
+      onDone={async (assignmentName, assignmentId, assignmentPhase, assignmentDomain) => {
         setOpen(false)
-        await createAssignment(assignmentName, assignmentNumber)
+        await createAssignment(assignmentName, assignmentId, assignmentPhase, assignmentDomain)
       }}
       onCancel={() => setOpen(false)} />
   )
