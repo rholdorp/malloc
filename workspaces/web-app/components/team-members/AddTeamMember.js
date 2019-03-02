@@ -12,9 +12,9 @@ const AddTeamMember = () => {
       modalTitle='Add team member'
       buttonStyling={{ secondary: true, color: 'black' }}
       onOpen={() => setOpen(true)}
-      onDone={async (name, availability) => {
+      onDone={async (name, contract, fromDate, tillDate, availability) => {
         setOpen(false)
-        await createTeamMember(name, availability)
+        await createTeamMember(name, contract, fromDate, tillDate, availability)
       }}
       onCancel={() => setOpen(false)} />
   )
