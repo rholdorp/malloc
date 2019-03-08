@@ -1,13 +1,12 @@
 import React from 'react'
 import { FadingValueBox } from '../animations'
-import { Input } from 'semantic-ui-react'
+import { Input, Table } from 'semantic-ui-react'
 
 import { HomeGrid, HeaderGridItem, ActionsGridItem, SearchGridItem,
   ResultsGridItem, FooterGridItem } from './HomeGrid'
 import { AddAssignment } from '../assignments'
-import { AddAllocation } from '../allocations'
+import { GetAllocation, AddAllocation } from '../allocations'
 import { AddTeamMember } from '../team-members'
-
 const Home = () => (
   <FadingValueBox>
     <HomeGrid>
@@ -28,7 +27,7 @@ const Home = () => (
         />
       </SearchGridItem>
       <ResultsGridItem>
-        Here come search results...
+        <GetAllocation />
       </ResultsGridItem>
       <FooterGridItem css={{ color: '#ff00cc' }}>
         © 2019 by Malloc
