@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FadingValueBox } from '../animations'
 import { Input, Menu, Segment } from 'semantic-ui-react'
 
@@ -10,6 +10,14 @@ import { AddTeamMember } from '../team-members'
 
 const Home = () => {
   const [ activeItem, setActiveItem ] = useState('Team Members')
+  const [ initialized, setInitialized ] = useState(false)
+
+  useEffect(() => {
+    if (!initialized) {
+      console.log('Home component mounted')
+      setInitialized(true)
+    }
+  })
 
   return (
 
