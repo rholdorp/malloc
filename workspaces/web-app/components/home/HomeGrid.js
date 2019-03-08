@@ -2,10 +2,10 @@ import styled from '@emotion/styled'
 import { Grid } from '@react-frontend-developer/css-grid-helper'
 
 let grid = new Grid([
-  'header         header',
-  'actions        search',
-  'results        results',
-  'footer         footer'
+  'header',
+  'actions',
+  'results',
+  'footer'
 ], {
   gridTemplateRows: 'max-content max-content 1fr max-content'
 })
@@ -23,16 +23,9 @@ const HeaderGridItem = styled.div(grid.header, gridItemLayout, { justifyContent:
 
 const ActionsGridItem = styled.div(grid.actions, gridItemLayout, { justifyContent: 'flex-start' })
 
-const SearchGridItem = styled.div(grid.search, gridItemLayout, { justifyContent: 'flex-end' })
-
-const ResultsGridItem = styled.div(grid.results, gridItemLayout, {
-  width: '100%',
-  height: '100%',
-  border: '1px solid black',
-  borderRadius: '10px'
-})
+const ResultsGridItem = styled.div(grid.results, gridItemLayout, { justifyContent: 'flex-start' })
 
 const FooterGridItem = styled.div(grid.footer, gridItemLayout)
 
-export { HomeGrid, HeaderGridItem, ActionsGridItem, SearchGridItem,
+export { HomeGrid, HeaderGridItem, ActionsGridItem,
   ResultsGridItem, FooterGridItem }
