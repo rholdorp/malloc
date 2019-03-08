@@ -1,6 +1,6 @@
 # malloc
 
-A simple secret sharing app based on Cogito Identity framework.
+Learning project building a React application for managing the workload and assigments of a team.
 
 ## Quick Start
 
@@ -22,7 +22,7 @@ So, nextjs builder and nextjs itself are undergoing changes in the way the deplo
 
 We like to use the serverless deployment, which is in every way better than the legacy one.
 
-That's why we are using `next@canary` because this version enables *serverless* mode.
+That's why we are using `next@canary` because this version enables _serverless_ mode.
 
 Please check and observe the following discussions:
 
