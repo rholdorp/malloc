@@ -1,26 +1,43 @@
 import React, { useState, useEffect } from 'react'
 import { FadingValueBox } from '../animations'
-import { Table, Input, Menu, Segment } from 'semantic-ui-react'
+import { Icon, Grid, Dropdown, Table, Menu, Segment, List } from 'semantic-ui-react'
 
-import { HomeGrid, HeaderGridItem, ActionsGridItem,
-  ResultsGridItem, FooterGridItem } from './HomeGrid'
-import { AddAssignment } from '../assignments'
-import { AddAllocation } from '../allocations'
-import { AddTeamMember } from '../team-members'
+import { HomeGrid, HeaderGridItem, FilterGridItem,
+  ResultsGridItem, ChartsGridItem, FooterGridItem } from './HomeGrid'
 
-const FilterTableRow = (props) => (
+const yearOptions = [
+  { key: '2018', value: '2018', text: '2018' },
+  { key: '2019', value: '2019', text: '2019' }
+
+]
+
+const organisationOptions = [
+  { key: 'Department1', value: 'Department1', text: 'Department1' },
+  { key: 'Department2', value: 'Department2', text: 'Department2' }
+
+]
+
+const AllocationTableRow = (props) => (
   <Table.Row>
-    <Table.Cell>{props.name}</Table.Cell>
-    <Table.Cell>{props.contract}</Table.Cell>
+    <Table.Cell>{props.memberName}</Table.Cell>
+    <Table.Cell>{props.assignment}</Table.Cell>
+    <Table.Cell>{props.commitment}</Table.Cell>
+    <Table.Cell>{props.startDate}</Table.Cell>
+    <Table.Cell>{props.endDate}</Table.Cell>
+    <Table.Cell>{props.hours}</Table.Cell>
   </Table.Row>
 )
 
-const FilterTable = (props) => (
+const AllocationTable = (props) => (
   <Table selectable>
     <Table.Header>
       <Table.Row>
         <Table.HeaderCell>Team Member</Table.HeaderCell>
-        <Table.HeaderCell>Contract</Table.HeaderCell>
+        <Table.HeaderCell>Assignment</Table.HeaderCell>
+        <Table.HeaderCell>Commitment</Table.HeaderCell>
+        <Table.HeaderCell>Start Date</Table.HeaderCell>
+        <Table.HeaderCell>End Date</Table.HeaderCell>
+        <Table.HeaderCell>Hours</Table.HeaderCell>
       </Table.Row>
     </Table.Header>
     <Table.Body>
@@ -28,15 +45,33 @@ const FilterTable = (props) => (
     </Table.Body>
   </Table>
 )
+
 const Home = () => {
-  const [ activeItem, setActiveItem ] = useState('Team Members')
+  const [ activeItem, setActiveItem ] = useState('All')
   const [ initialized, setInitialized ] = useState(false)
 
-  const team = [
-    { name: 'name00', contract: 'contract00' },
-    { name: 'name01', contract: 'contract01' },
-    { name: 'name02', contract: 'contract02' },
-    { name: 'name03', contract: 'contract03' }
+  const allocations = [
+    { memberName: 'name00',
+      assignment: 'assignment00',
+      commitment: 'committed',
+      startDate: '01-01',
+      endDate: '31-12',
+      hours: 40
+    },
+    { memberName: 'name01',
+      assignment: 'assignment01',
+      commitment: 'committed',
+      startDate: '01-01',
+      endDate: '31-12',
+      hours: 20
+    },
+    { memberName: 'name01',
+      assignment: 'assignment02',
+      commitment: 'expexted',
+      startDate: '01-01',
+      endDate: '31-12',
+      hours: 20
+    }
   ]
   useEffect(() => {
     if (!initialized) {
@@ -52,48 +87,105 @@ const Home = () => {
         <HeaderGridItem>
           <h1 css={{ color: '#ff00cc' }}>/&lt;malloc&gt;</h1>
         </HeaderGridItem>
-        <ActionsGridItem>
-          <AddAssignment />
-          <AddTeamMember />
-          <AddAllocation />
-        </ActionsGridItem>
+
+        <FilterGridItem>
+          <Menu>
+            <Dropdown placeholder='Set Organisation' search selection options={organisationOptions} />
+            <Dropdown placeholder='Set Year' search selection options={yearOptions} />
+            <Menu.Menu position='right'>
+              <Menu.Item
+                name='new-team-member'
+                active={activeItem === 'new-team-member'}
+              >
+                <Icon name='add' />
+              New Team Member
+              </Menu.Item>
+            </Menu.Menu>
+
+          </Menu>
+          <Grid>
+            <Grid.Column width={4}>
+              <Menu fluid vertical tabular>
+                <Menu.Item
+                  name='All'
+                  active={activeItem === 'All'}
+                  content='All'
+                  onClick={e => setActiveItem('All')}
+                />
+                <Menu.Item
+                  name='Leads'
+                  active={activeItem === 'Leads'}
+                  content='Leads'
+                  onClick={e => setActiveItem('Leads')}
+                />
+                <Menu.Item
+                  name='Free'
+                  active={activeItem === 'Free'}
+                  content='Free'
+                  onClick={e => setActiveItem('Free')}
+                />
+              </Menu>
+            </Grid.Column>
+            <Grid.Column stretched width={12}>
+              <Segment>
+                <List divided relaxed>
+                  <List.Item>
+                    <List.Content>
+                      <List.Header as='a'>Team Member 000</List.Header>
+                      <List.Description as='a'>Available for 40 hrs per week for 01-Jan till 31-Dec</List.Description>
+                    </List.Content>
+                  </List.Item>
+                  <List.Item>
+                    <List.Content>
+                      <List.Header as='a'>Team Member 001</List.Header>
+                      <List.Description as='a'>Available for 40 hrs per week for 01-Jan till 31-Dec</List.Description>
+                    </List.Content>
+                  </List.Item>
+                  <List.Item>
+                    <List.Content>
+                      <List.Header as='a'>Team Member 003</List.Header>
+                      <List.Description as='a'>Available for 40 hrs per week for 01-Jan till 31-Dec</List.Description>
+                    </List.Content>
+                  </List.Item>
+                </List>
+              </Segment>
+            </Grid.Column>
+          </Grid>
+        </FilterGridItem>
 
         <ResultsGridItem>
-          <div>
-            <Menu pointing >
+          <Menu>
+            <Menu.Menu position='right'>
               <Menu.Item
-                name='Team Members'
-                active={activeItem === 'Team Members'}
-                onClick={e => setActiveItem('Team Members')}
-              />
+                name='add-assignment'
+                active={activeItem === 'add-assignment'}
+              >
+                <Icon name='add' />
+              Add Assignement
+              </Menu.Item>
               <Menu.Item
-                name='Free Capacity'
-                active={activeItem === 'Free Capacity'}
-                onClick={e => setActiveItem('Free Capacity')}
-              />
-              <Menu.Item
-                name='Expected'
-                active={activeItem === 'Expected'}
-                onClick={e => setActiveItem('Expected')}
-              />
-              <Menu.Menu position='right'>
-                <Menu.Item>
-                  <Input icon='search' placeholder='Search...' />
-                </Menu.Item>
-              </Menu.Menu>
-            </Menu>
+                name='add-allocation'
+                active={activeItem === 'add-allocation'}
+              >
+                <Icon name='add' />
+              Add Allocation
+              </Menu.Item>
+            </Menu.Menu>
 
-            <Segment>
-              <div>
-                <FilterTable>
-                  {team.map((member, index) => (
-                    <FilterTableRow key={index} {...member} />
-                  ))}
-                </FilterTable>
-              </div>
-            </Segment>
-          </div>
+          </Menu>
+
+          <AllocationTable>
+            {allocations.map((allocation, index) => (
+              <AllocationTableRow key={index} {...allocation} />
+            ))}
+          </AllocationTable>
+
         </ResultsGridItem>
+
+        <ChartsGridItem>
+          Some chart...
+        </ChartsGridItem>
+
         <FooterGridItem css={{ color: '#ff00cc' }}>
         © 2019 by Malloc
         </FooterGridItem>

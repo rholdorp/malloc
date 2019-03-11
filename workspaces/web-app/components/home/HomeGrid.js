@@ -2,18 +2,16 @@ import styled from '@emotion/styled'
 import { Grid } from '@react-frontend-developer/css-grid-helper'
 
 let grid = new Grid([
-  'header',
-  'actions',
-  'results',
-  'footer'
+  'header       header',
+  'filter       filter',
+  'results      results',
+  'charts       charts',
+  'footer       footer'
 ], {
-  gridTemplateRows: 'max-content max-content 1fr max-content'
+  gridTemplateRows: 'max-content max-content max-content 1fr max-content'
 })
 
 const gridItemLayout = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
   padding: '5px'
 }
 
@@ -21,11 +19,28 @@ const HomeGrid = styled.div(grid.container, { height: '100vh', width: '100%', pa
 
 const HeaderGridItem = styled.div(grid.header, gridItemLayout, { justifyContent: 'flex-end' })
 
-const ActionsGridItem = styled.div(grid.actions, gridItemLayout, { justifyContent: 'flex-start' })
+const FilterGridItem = styled.div(grid.filter, gridItemLayout, {
+  width: '100%',
+  height: '100%',
+  border: '1px solid black',
+  borderRadius: '10px'
+})
 
-const ResultsGridItem = styled.div(grid.results, gridItemLayout, { justifyContent: 'flex-start' })
+const ResultsGridItem = styled.div(grid.results, gridItemLayout, {
+  width: '100%',
+  height: '100%',
+  border: '1px solid black',
+  borderRadius: '10px'
+})
+
+const ChartsGridItem = styled.div(grid.charts, gridItemLayout, {
+  width: '100%',
+  height: '100%',
+  border: '1px solid black',
+  borderRadius: '10px'
+})
 
 const FooterGridItem = styled.div(grid.footer, gridItemLayout)
 
-export { HomeGrid, HeaderGridItem, ActionsGridItem,
-  ResultsGridItem, FooterGridItem }
+export { HomeGrid, HeaderGridItem, FilterGridItem,
+  ResultsGridItem, ChartsGridItem, FooterGridItem }
