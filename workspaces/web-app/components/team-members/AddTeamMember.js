@@ -10,7 +10,7 @@ const AddTeamMember = () => {
     <TeamMemberDialog open={open}
       buttonText='Add team member...'
       modalTitle='Add team member'
-      buttonStyling={{ secondary: true, color: 'black' }}
+      buttonStyling={{ color: 'facebook' }}
       onOpen={() => setOpen(true)}
       onDone={async (name, contract, fromDate, tillDate, availability) => {
         setOpen(false)

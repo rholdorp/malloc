@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Modal } from 'semantic-ui-react'
+import { Icon, Button, Modal } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 
 const Dialog = ({
@@ -18,6 +18,7 @@ const Dialog = ({
       <Button {...buttonStyling}
         disabled={buttonDisabled}
         onClick={onOpen}>
+        <Icon name='add' />
         {buttonText || 'New'}
       </Button>
     }

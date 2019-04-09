@@ -10,7 +10,7 @@ const AddAllocation = () => {
     <AllocationDialog open={open}
       buttonText='Add allocation...'
       modalTitle='Add allocation'
-      buttonStyling={{ secondary: true, color: 'black' }}
+      buttonStyling={{ color: 'facebook' }}
       onOpen={() => setOpen(true)}
       onDone={async (allocationName, allocationNumber) => {
         setOpen(false)

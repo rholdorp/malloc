@@ -4,6 +4,9 @@ import { Icon, Grid, Dropdown, Table, Menu, Segment, List } from 'semantic-ui-re
 
 import { HomeGrid, HeaderGridItem, FilterGridItem,
   ResultsGridItem, ChartsGridItem, FooterGridItem } from './HomeGrid'
+import { AddAllocation } from '../allocations'
+import { AddAssignment } from '../assignments'
+import { AddTeamMember } from '../team-members'
 
 const yearOptions = [
   { key: '2018', value: '2018', text: '2018' },
@@ -12,6 +15,11 @@ const yearOptions = [
 ]
 
 const organisationOptions = [
+  { key: 'Department1', value: 'Department1', text: 'Department1' },
+  { key: 'Department2', value: 'Department2', text: 'Department2' }
+
+]
+const organdfdfdisationOptions = [
   { key: 'Department1', value: 'Department1', text: 'Department1' },
   { key: 'Department2', value: 'Department2', text: 'Department2' }
 
@@ -93,12 +101,8 @@ const Home = () => {
             <Dropdown placeholder='Set Organisation' search selection options={organisationOptions} />
             <Dropdown placeholder='Set Year' search selection options={yearOptions} />
             <Menu.Menu position='right'>
-              <Menu.Item
-                name='new-team-member'
-                active={activeItem === 'new-team-member'}
-              >
-                <Icon name='add' />
-              New Team Member
+              <Menu.Item>
+                <AddTeamMember />
               </Menu.Item>
             </Menu.Menu>
 
@@ -156,19 +160,11 @@ const Home = () => {
         <ResultsGridItem>
           <Menu>
             <Menu.Menu position='right'>
-              <Menu.Item
-                name='add-assignment'
-                active={activeItem === 'add-assignment'}
-              >
-                <Icon name='add' />
-              Add Assignement
+              <Menu.Item>
+                <AddAssignment />
               </Menu.Item>
-              <Menu.Item
-                name='add-allocation'
-                active={activeItem === 'add-allocation'}
-              >
-                <Icon name='add' />
-              Add Allocation
+              <Menu.Item>
+                <AddAllocation />
               </Menu.Item>
             </Menu.Menu>
 
