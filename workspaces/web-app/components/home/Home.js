@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { FadingValueBox } from "../animations";
+import React, { useState, useEffect } from 'react'
+import { FadingValueBox } from '../animations'
 import {
   Icon,
   Grid,
@@ -8,7 +8,7 @@ import {
   Menu,
   Segment,
   List
-} from "semantic-ui-react";
+} from 'semantic-ui-react'
 import {
   AreaChart,
   Area,
@@ -16,7 +16,7 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip
-} from "recharts";
+} from 'recharts'
 
 import {
   HomeGrid,
@@ -25,69 +25,86 @@ import {
   ResultsGridItem,
   ChartsGridItem,
   FooterGridItem
-} from "./HomeGrid";
-import { AddAllocation } from "../allocations";
-import { AddAssignment } from "../assignments";
-import { AddTeamMember } from "../team-members";
+} from './HomeGrid'
+import { AddAllocation } from '../allocations'
+import { AddAssignment } from '../assignments'
+import { AddTeamMember } from '../team-members'
 
 const data = [
   {
-    name: "Page A",
+    name: 'Page A',
     uv: 4000,
     pv: 2400,
     amt: 2400
   },
   {
-    name: "Page B",
+    name: 'Page B',
     uv: 3000,
     pv: 1398,
     amt: 2210
   },
   {
-    name: "Page C",
+    name: 'Page C',
     uv: 2000,
     pv: 9800,
     amt: 2290
   },
   {
-    name: "Page D",
+    name: 'Page D',
     uv: 2780,
     pv: 3908,
     amt: 2000
   },
   {
-    name: "Page E",
+    name: 'Page E',
     uv: 1890,
     pv: 4800,
     amt: 2181
   },
   {
-    name: "Page F",
+    name: 'Page F',
     uv: 2390,
     pv: 3800,
     amt: 2500
   },
   {
-    name: "Page G",
+    name: 'Page G',
     uv: 3490,
     pv: 4300,
     amt: 2100
   }
-];
+]
+
+const teamMembers = [
+  { name: 'John', description: 'allocation per week ...' },
+  { name: 'Paul', description: 'allocation per week ...' },
+  { name: 'Wim', description: 'allocation per week ...' }
+]
 
 const yearOptions = [
-  { key: "2018", value: "2018", text: "2018" },
-  { key: "2019", value: "2019", text: "2019" }
-];
+  { key: '2018', value: '2018', text: '2018' },
+  { key: '2019', value: '2019', text: '2019' }
+]
 
 const organisationOptions = [
-  { key: "Department1", value: "Department1", text: "Department1" },
-  { key: "Department2", value: "Department2", text: "Department2" }
-];
-const organdfdfdisationOptions = [
-  { key: "Department1", value: "Department1", text: "Department1" },
-  { key: "Department2", value: "Department2", text: "Department2" }
-];
+  { key: 'Department1', value: 'Department1', text: 'Department1' },
+  { key: 'Department2', value: 'Department2', text: 'Department2' }
+]
+
+const TeamMemberList = props => (
+  <List divided relaxed>
+    <List.Item>
+      {props.children}
+    </List.Item>
+  </List>
+)
+
+const TeamMemberRow = props => (
+  <List.Content>
+    <List.Header as='a'>{props.name}</List.Header>
+    <List.Description as='a'>{props.description}</List.Description>
+  </List.Content>
+)
 
 const AllocationTableRow = props => (
   <Table.Row>
@@ -98,7 +115,7 @@ const AllocationTableRow = props => (
     <Table.Cell>{props.endDate}</Table.Cell>
     <Table.Cell>{props.hours}</Table.Cell>
   </Table.Row>
-);
+)
 
 const AllocationTable = props => (
   <Table selectable>
@@ -114,67 +131,67 @@ const AllocationTable = props => (
     </Table.Header>
     <Table.Body>{props.children}</Table.Body>
   </Table>
-);
+)
 
 const Home = () => {
-  const [activeItem, setActiveItem] = useState("All");
-  const [initialized, setInitialized] = useState(false);
+  const [activeItem, setActiveItem] = useState('All')
+  const [initialized, setInitialized] = useState(false)
 
   const allocations = [
     {
-      memberName: "name00",
-      assignment: "assignment00",
-      commitment: "committed",
-      startDate: "01-01",
-      endDate: "31-12",
+      memberName: 'name00',
+      assignment: 'assignment00',
+      commitment: 'committed',
+      startDate: '01-01',
+      endDate: '31-12',
       hours: 40
     },
     {
-      memberName: "name01",
-      assignment: "assignment01",
-      commitment: "committed",
-      startDate: "01-01",
-      endDate: "31-12",
+      memberName: 'name01',
+      assignment: 'assignment01',
+      commitment: 'committed',
+      startDate: '01-01',
+      endDate: '31-12',
       hours: 20
     },
     {
-      memberName: "name01",
-      assignment: "assignment02",
-      commitment: "expexted",
-      startDate: "01-01",
-      endDate: "31-12",
+      memberName: 'name01',
+      assignment: 'assignment02',
+      commitment: 'expexted',
+      startDate: '01-01',
+      endDate: '31-12',
       hours: 20
     }
-  ];
+  ]
   useEffect(() => {
     if (!initialized) {
-      console.log("Home component mounted");
-      setInitialized(true);
+      console.log('Home component mounted')
+      setInitialized(true)
     }
-  });
+  })
 
   return (
     <FadingValueBox>
       <HomeGrid>
         <HeaderGridItem>
-          <h1 css={{ color: "#ff00cc" }}>/&lt;malloc&gt;</h1>
+          <h1 css={{ color: '#ff00cc' }}>/&lt;malloc&gt;</h1>
         </HeaderGridItem>
 
         <FilterGridItem>
           <Menu>
             <Dropdown
-              placeholder="Set Organisation"
+              placeholder='Set Organisation'
               search
               selection
               options={organisationOptions}
             />
             <Dropdown
-              placeholder="Set Year"
+              placeholder='Set Year'
               search
               selection
               options={yearOptions}
             />
-            <Menu.Menu position="right">
+            <Menu.Menu position='right'>
               <Menu.Item>
                 <AddTeamMember />
               </Menu.Item>
@@ -184,53 +201,32 @@ const Home = () => {
             <Grid.Column width={4}>
               <Menu fluid vertical tabular>
                 <Menu.Item
-                  name="All"
-                  active={activeItem === "All"}
-                  content="All"
-                  onClick={e => setActiveItem("All")}
+                  name='All'
+                  active={activeItem === 'All'}
+                  content='All'
+                  onClick={e => setActiveItem('All')}
                 />
                 <Menu.Item
-                  name="Leads"
-                  active={activeItem === "Leads"}
-                  content="Leads"
-                  onClick={e => setActiveItem("Leads")}
+                  name='Leads'
+                  active={activeItem === 'Leads'}
+                  content='Leads'
+                  onClick={e => setActiveItem('Leads')}
                 />
                 <Menu.Item
-                  name="Free"
-                  active={activeItem === "Free"}
-                  content="Free"
-                  onClick={e => setActiveItem("Free")}
+                  name='Free'
+                  active={activeItem === 'Free'}
+                  content='Free'
+                  onClick={e => setActiveItem('Free')}
                 />
               </Menu>
             </Grid.Column>
             <Grid.Column stretched width={12}>
               <Segment>
-                <List divided relaxed>
-                  <List.Item>
-                    <List.Content>
-                      <List.Header as="a">Team Member 000</List.Header>
-                      <List.Description as="a">
-                        Available for 40 hrs per week for 01-Jan till 31-Dec
-                      </List.Description>
-                    </List.Content>
-                  </List.Item>
-                  <List.Item>
-                    <List.Content>
-                      <List.Header as="a">Team Member 001</List.Header>
-                      <List.Description as="a">
-                        Available for 40 hrs per week for 01-Jan till 31-Dec
-                      </List.Description>
-                    </List.Content>
-                  </List.Item>
-                  <List.Item>
-                    <List.Content>
-                      <List.Header as="a">Team Member 003</List.Header>
-                      <List.Description as="a">
-                        Available for 40 hrs per week for 01-Jan till 31-Dec
-                      </List.Description>
-                    </List.Content>
-                  </List.Item>
-                </List>
+                <TeamMemberList>
+                  {teamMembers.map((teamMember, index) => (
+                    <TeamMemberRow key={index} {...teamMember} />
+                  ))}
+                </TeamMemberList>
               </Segment>
             </Grid.Column>
           </Grid>
@@ -238,7 +234,7 @@ const Home = () => {
 
         <ResultsGridItem>
           <Menu>
-            <Menu.Menu position="right">
+            <Menu.Menu position='right'>
               <Menu.Item>
                 <AddAssignment />
               </Menu.Item>
@@ -267,40 +263,40 @@ const Home = () => {
               bottom: 0
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
+            <CartesianGrid strokeDasharray='3 3' />
+            <XAxis dataKey='name' />
             <YAxis />
             <Tooltip />
             <Area
-              type="monotone"
-              dataKey="uv"
-              stackId="1"
-              stroke="#8884d8"
-              fill="#8884d8"
+              type='monotone'
+              dataKey='uv'
+              stackId='1'
+              stroke='#8884d8'
+              fill='#8884d8'
             />
             <Area
-              type="monotone"
-              dataKey="pv"
-              stackId="1"
-              stroke="#82ca9d"
-              fill="#82ca9d"
+              type='monotone'
+              dataKey='pv'
+              stackId='1'
+              stroke='#82ca9d'
+              fill='#82ca9d'
             />
             <Area
-              type="monotone"
-              dataKey="amt"
-              stackId="1"
-              stroke="#ffc658"
-              fill="#ffc658"
+              type='monotone'
+              dataKey='amt'
+              stackId='1'
+              stroke='#ffc658'
+              fill='#ffc658'
             />
           </AreaChart>
         </ChartsGridItem>
 
-        <FooterGridItem css={{ color: "#ff00cc" }}>
+        <FooterGridItem css={{ color: '#ff00cc' }}>
           © 2019 by Malloc
         </FooterGridItem>
       </HomeGrid>
     </FadingValueBox>
-  );
-};
+  )
+}
 
-export { Home };
+export { Home }
