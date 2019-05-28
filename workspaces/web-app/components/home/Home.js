@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { getCurrentlySignedUser } from '../../services/firebase'
 import { FadingValueBox } from '../animations'
 import {
   Icon,
@@ -29,6 +30,7 @@ import {
 import { AddAllocation } from '../allocations'
 import { AddAssignment } from '../assignments'
 import { AddTeamMember } from '../team-members'
+import { getTeamMembers } from '../team-members/db'
 
 const data = [
   {
@@ -75,12 +77,6 @@ const data = [
   }
 ]
 
-const teamMembers = [
-  { name: 'John', description: 'allocation per week ...' },
-  { name: 'Paul', description: 'allocation per week ...' },
-  { name: 'Wim', description: 'allocation per week ...' }
-]
-
 const yearOptions = [
   { key: '2018', value: '2018', text: '2018' },
   { key: '2019', value: '2019', text: '2019' }
@@ -90,6 +86,8 @@ const organisationOptions = [
   { key: 'Department1', value: 'Department1', text: 'Department1' },
   { key: 'Department2', value: 'Department2', text: 'Department2' }
 ]
+
+// const teamMembers = [ { name: 'name1', description: 'descr1' } ]
 
 const TeamMemberList = props => (
   <List divided relaxed>
@@ -102,7 +100,7 @@ const TeamMemberList = props => (
 const TeamMemberRow = props => (
   <List.Content>
     <List.Header as='a'>{props.name}</List.Header>
-    <List.Description as='a'>{props.description}</List.Description>
+    <List.Description as='a'>{props.contract}</List.Description>
   </List.Content>
 )
 
@@ -136,6 +134,7 @@ const AllocationTable = props => (
 const Home = () => {
   const [activeItem, setActiveItem] = useState('All')
   const [initialized, setInitialized] = useState(false)
+  const [teamMembers, setTeamMembers] = useState([])
 
   const allocations = [
     {
@@ -163,10 +162,24 @@ const Home = () => {
       hours: 20
     }
   ]
+
   useEffect(() => {
-    if (!initialized) {
+    const uid = getCurrentlySignedUser()
+    if ((!initialized) && (uid)) {
       console.log('Home component mounted')
       setInitialized(true)
+      const fetchTeamMembers = async () => {
+        const teamMembers = await getTeamMembers()
+        // setTeamMembers(teamMembers)
+        // console.log('bla', teamMembers)
+        const teamMemList = teamMembers && teamMembers.map((teamMember) => (
+          // console.log(teamMember.data())
+          teamMember.data()
+        ))
+        setTeamMembers(teamMemList)
+      }
+      fetchTeamMembers()
+      console.log(teamMembers)
     }
   })
 
@@ -223,7 +236,7 @@ const Home = () => {
             <Grid.Column stretched width={12}>
               <Segment>
                 <TeamMemberList>
-                  {teamMembers.map((teamMember, index) => (
+                  {teamMembers && teamMembers.map((teamMember, index) => (
                     <TeamMemberRow key={index} {...teamMember} />
                   ))}
                 </TeamMemberList>
