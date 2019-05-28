@@ -1,4 +1,3 @@
-import 'babel-polyfill'
 import React from 'react'
 import Head from 'next/head'
 import { Global } from '@emotion/core'
