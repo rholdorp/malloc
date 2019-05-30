@@ -87,8 +87,6 @@ const organisationOptions = [
   { key: 'Department2', value: 'Department2', text: 'Department2' }
 ]
 
-// const teamMembers = [ { name: 'name1', description: 'descr1' } ]
-
 const TeamMemberList = props => (
   <List divided relaxed>
     <List.Item>
@@ -100,7 +98,7 @@ const TeamMemberList = props => (
 const TeamMemberRow = props => (
   <List.Content>
     <List.Header as='a'>{props.name}</List.Header>
-    <List.Description as='a'>{props.contract}</List.Description>
+    <List.Description as='a'>{props.availability} hours per week from {props.fromDate} till {props.tillDate}</List.Description>
   </List.Content>
 )
 
@@ -170,16 +168,12 @@ const Home = () => {
       setInitialized(true)
       const fetchTeamMembers = async () => {
         const teamMembers = await getTeamMembers()
-        // setTeamMembers(teamMembers)
-        // console.log('bla', teamMembers)
         const teamMemList = teamMembers && teamMembers.map((teamMember) => (
-          // console.log(teamMember.data())
           teamMember.data()
         ))
         setTeamMembers(teamMemList)
       }
       fetchTeamMembers()
-      console.log(teamMembers)
     }
   })
 
