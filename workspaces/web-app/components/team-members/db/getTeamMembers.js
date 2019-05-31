@@ -10,7 +10,10 @@ const getTeamMembers = async () => {
       //   console.log(snapshot.val)
       // })
       const snapshot = await db.collection('teamMembers').get()
-      return snapshot.docs
+      const teamMembers = snapshot.docs && snapshot.docs.map((teamMember) => (
+        teamMember.data()
+      ))
+      return teamMembers
     } else {
       throw new Error('Having trouble accesing Firebase. Please try again...')
     }

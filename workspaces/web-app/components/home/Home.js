@@ -168,10 +168,7 @@ const Home = () => {
       setInitialized(true)
       const fetchTeamMembers = async () => {
         const teamMembers = await getTeamMembers()
-        const teamMemList = teamMembers && teamMembers.map((teamMember) => (
-          teamMember.data()
-        ))
-        setTeamMembers(teamMemList)
+        setTeamMembers(teamMembers)
       }
       fetchTeamMembers()
     }
