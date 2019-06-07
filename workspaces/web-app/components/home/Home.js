@@ -182,18 +182,11 @@ const Home = () => {
   }
 
   useEffect(() => {
-    // const uid = getCurrentlySignedUser()
-    if (!initialized) {
-      // if ((!initialized) && (uid)) {
+    const uid = getCurrentlySignedUser()
+    if ((!initialized) && (uid)) {
       console.log('Home component mounted')
       setInitialized(true)
       Listeners()
-
-      // const fetchTeamMembers = async () => {
-      //   const teamMembers = await getTeamMembers()
-      //   setTeamMembers(teamMembers)
-      // }
-      // fetchTeamMembers()
     }
   })
 
