@@ -87,6 +87,33 @@ const organisationOptions = [
   { key: 'Department2', value: 'Department2', text: 'Department2' }
 ]
 
+const allocations = [
+  {
+    memberName: 'name00',
+    assignment: 'assignment00',
+    commitment: 'committed',
+    startDate: '01-01',
+    endDate: '31-12',
+    hours: 40
+  },
+  {
+    memberName: 'name01',
+    assignment: 'assignment01',
+    commitment: 'committed',
+    startDate: '01-01',
+    endDate: '31-12',
+    hours: 20
+  },
+  {
+    memberName: 'name01',
+    assignment: 'assignment02',
+    commitment: 'expexted',
+    startDate: '01-01',
+    endDate: '31-12',
+    hours: 20
+  }
+]
+
 const TeamMemberList = props => (
   <List divided relaxed>
     <List.Item>
@@ -134,43 +161,39 @@ const Home = () => {
   const [initialized, setInitialized] = useState(false)
   const [teamMembers, setTeamMembers] = useState([])
 
-  const allocations = [
-    {
-      memberName: 'name00',
-      assignment: 'assignment00',
-      commitment: 'committed',
-      startDate: '01-01',
-      endDate: '31-12',
-      hours: 40
-    },
-    {
-      memberName: 'name01',
-      assignment: 'assignment01',
-      commitment: 'committed',
-      startDate: '01-01',
-      endDate: '31-12',
-      hours: 20
-    },
-    {
-      memberName: 'name01',
-      assignment: 'assignment02',
-      commitment: 'expexted',
-      startDate: '01-01',
-      endDate: '31-12',
-      hours: 20
+  const Listeners = () => {
+    try {
+      const uid = getCurrentlySignedUser()
+      console.log('Setting Listeners')
+      if (uid) {
+        const db = firebase.firestore()
+        db.collection('teamMembers').onSnapshot(snapshot => {
+          // const changes = teamMembers.docChanges()
+          const teamMembers = snapshot.docs && snapshot.docs.map((teamMember) => (teamMember.data()
+          ))
+          setTeamMembers(teamMembers)
+        })
+      } else {
+        throw new Error('Having trouble accesing Firebase. Please try again...')
+      }
+    } catch (e) {
+      console.error(e)
     }
-  ]
+  }
 
   useEffect(() => {
-    const uid = getCurrentlySignedUser()
-    if ((!initialized) && (uid)) {
+    // const uid = getCurrentlySignedUser()
+    if (!initialized) {
+      // if ((!initialized) && (uid)) {
       console.log('Home component mounted')
       setInitialized(true)
-      const fetchTeamMembers = async () => {
-        const teamMembers = await getTeamMembers()
-        setTeamMembers(teamMembers)
-      }
-      fetchTeamMembers()
+      Listeners()
+
+      // const fetchTeamMembers = async () => {
+      //   const teamMembers = await getTeamMembers()
+      //   setTeamMembers(teamMembers)
+      // }
+      // fetchTeamMembers()
     }
   })
 

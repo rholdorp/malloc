@@ -6,9 +6,6 @@ const getTeamMembers = async () => {
     console.log('Getting Team Members')
     if (uid) {
       const db = firebase.firestore()
-      // await db.collection('teamMembers').get().then((snapshot) => {
-      //   console.log(snapshot.val)
-      // })
       const snapshot = await db.collection('teamMembers').get()
       const teamMembers = snapshot.docs && snapshot.docs.map((teamMember) => (
         teamMember.data()
