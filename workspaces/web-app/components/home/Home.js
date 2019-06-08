@@ -160,18 +160,29 @@ const Home = () => {
   const [activeItem, setActiveItem] = useState('All')
   const [initialized, setInitialized] = useState(false)
   const [teamMembers, setTeamMembers] = useState([])
+  const [assignments, setAssignments] = useState([])
+  const [allocations, setAllocations] = useState([])
 
-  const Listeners = () => {
+  const setListeners = () => {
     try {
       const uid = getCurrentlySignedUser()
       console.log('Setting Listeners')
       if (uid) {
         const db = firebase.firestore()
         db.collection('teamMembers').onSnapshot(snapshot => {
-          // const changes = teamMembers.docChanges()
           const teamMembers = snapshot.docs && snapshot.docs.map((teamMember) => (teamMember.data()
           ))
           setTeamMembers(teamMembers)
+        })
+        db.collection('assignments').onSnapshot(snapshot => {
+          const assignments = snapshot.docs && snapshot.docs.map((assignment) => (assignment.data()
+          ))
+          setAssignments(assignments)
+        })
+        db.collection('allocations').onSnapshot(snapshot => {
+          const allocations = snapshot.docs && snapshot.docs.map((allocation) => (allocation.data()
+          ))
+          setAllocations(allocations)
         })
       } else {
         throw new Error('Having trouble accesing Firebase. Please try again...')
@@ -180,13 +191,15 @@ const Home = () => {
       console.error(e)
     }
   }
-
+  useEffect(() => {
+    console.log('use effect')
+  })
   useEffect(() => {
     const uid = getCurrentlySignedUser()
     if ((!initialized) && (uid)) {
       console.log('Home component mounted')
       setInitialized(true)
-      Listeners()
+      setListeners()
     }
   })
 
