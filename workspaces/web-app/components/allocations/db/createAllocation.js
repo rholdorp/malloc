@@ -1,13 +1,13 @@
 import { getCurrentlySignedUser } from '../../../services/firebase'
 
-const createAllocation = async (allocationName, allocationNumber) => {
+const createAllocation = async (name, activity, commitment, from, till, hours, timestamp) => {
   try {
     const uid = getCurrentlySignedUser()
     if (uid) {
       const db = firebase.firestore()
+      console.log(name, activity, commitment, from, till, hours, timestamp)
       await db.collection('allocations').add({
-        allocationName,
-        allocationNumber
+        name, activity, commitment, from, till, hours, timestamp
       })
     } else {
       throw new Error('Having trouble accesing Firebase. Please try again...')

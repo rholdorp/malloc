@@ -12,9 +12,9 @@ const AddAllocation = () => {
       modalTitle='Add allocation'
       buttonStyling={{ color: 'facebook' }}
       onOpen={() => setOpen(true)}
-      onDone={async (allocationName, allocationNumber) => {
+      onDone={async (name, activity, commitment, from, till, hours, timestamp) => {
         setOpen(false)
-        await createAllocation(allocationName, allocationNumber)
+        await createAllocation(name, activity, commitment, from, till, hours, timestamp)
       }}
       onCancel={() => setOpen(false)} />
   )

@@ -30,7 +30,6 @@ import {
 import { AddAllocation } from '../allocations'
 import { AddAssignment } from '../assignments'
 import { AddTeamMember } from '../team-members'
-import { getTeamMembers } from '../team-members/db'
 
 const data = [
   {
@@ -87,33 +86,6 @@ const organisationOptions = [
   { key: 'Department2', value: 'Department2', text: 'Department2' }
 ]
 
-const allocations = [
-  {
-    memberName: 'name00',
-    assignment: 'assignment00',
-    commitment: 'committed',
-    startDate: '01-01',
-    endDate: '31-12',
-    hours: 40
-  },
-  {
-    memberName: 'name01',
-    assignment: 'assignment01',
-    commitment: 'committed',
-    startDate: '01-01',
-    endDate: '31-12',
-    hours: 20
-  },
-  {
-    memberName: 'name01',
-    assignment: 'assignment02',
-    commitment: 'expexted',
-    startDate: '01-01',
-    endDate: '31-12',
-    hours: 20
-  }
-]
-
 const TeamMemberList = props => (
   <List divided relaxed>
     <List.Item>
@@ -131,11 +103,11 @@ const TeamMemberRow = props => (
 
 const AllocationTableRow = props => (
   <Table.Row>
-    <Table.Cell>{props.memberName}</Table.Cell>
-    <Table.Cell>{props.assignment}</Table.Cell>
+    <Table.Cell>{props.name}</Table.Cell>
+    <Table.Cell>{props.activity}</Table.Cell>
     <Table.Cell>{props.commitment}</Table.Cell>
-    <Table.Cell>{props.startDate}</Table.Cell>
-    <Table.Cell>{props.endDate}</Table.Cell>
+    <Table.Cell>{props.from}</Table.Cell>
+    <Table.Cell>{props.till}</Table.Cell>
     <Table.Cell>{props.hours}</Table.Cell>
   </Table.Row>
 )
@@ -145,7 +117,7 @@ const AllocationTable = props => (
     <Table.Header>
       <Table.Row>
         <Table.HeaderCell>Team Member</Table.HeaderCell>
-        <Table.HeaderCell>Assignment</Table.HeaderCell>
+        <Table.HeaderCell>Activity</Table.HeaderCell>
         <Table.HeaderCell>Commitment</Table.HeaderCell>
         <Table.HeaderCell>Start Date</Table.HeaderCell>
         <Table.HeaderCell>End Date</Table.HeaderCell>
