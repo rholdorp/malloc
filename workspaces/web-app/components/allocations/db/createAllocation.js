@@ -5,7 +5,6 @@ const createAllocation = async (name, activity, commitment, from, till, hours, t
     const uid = getCurrentlySignedUser()
     if (uid) {
       const db = firebase.firestore()
-      console.log(name, activity, commitment, from, till, hours, timestamp)
       await db.collection('allocations').add({
         name, activity, commitment, from, till, hours, timestamp
       })

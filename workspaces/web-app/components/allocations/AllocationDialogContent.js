@@ -13,6 +13,8 @@ const AllocationDialogContent = props => {
 
   const onDone = () => {
     const { onDone } = props
+    console.log(name, activity, commitment, from, till, hours, timestamp)
+
     onDone && onDone(name, activity, commitment, from, till, hours, timestamp)
   }
 
