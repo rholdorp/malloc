@@ -14,9 +14,9 @@ const AddAllocation = (props) => {
       modalTitle='Add allocation'
       buttonStyling={{ color: 'facebook' }}
       onOpen={() => setOpen(true)}
-      onDone={async (name, activity, commitment, from, till, hours, timestamp) => {
+      onDone={async (name, assignmentName, commitment, from, till, hours, timestamp) => {
         setOpen(false)
-        await createAllocation(name, activity, commitment, from, till, hours, timestamp)
+        await createAllocation(name, assignmentName, commitment, from, till, hours, timestamp)
       }}
       onCancel={() => setOpen(false)} />
   )

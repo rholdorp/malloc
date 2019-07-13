@@ -4,7 +4,7 @@ import { Centered } from '@react-frontend-developer/react-layout-helpers'
 
 const AllocationDialogContent = props => {
   const [ name, setName ] = useState('')
-  const [ assignment, setActivity ] = useState('')
+  const [ assignmentName, setAssignmentName ] = useState('')
   const [ commitment, setCommitment ] = useState('')
   const [ from, setFrom ] = useState('')
   const [ till, setTill ] = useState('')
@@ -13,14 +13,25 @@ const AllocationDialogContent = props => {
 
   const onDone = () => {
     const { onDone } = props
-    console.log(name, assignment, commitment, from, till, hours, timestamp)
+    console.log(name, assignmentName, commitment, from, till, hours, timestamp)
 
-    onDone && onDone(name, assignment, commitment, from, till, hours, timestamp)
+    onDone && onDone(name, assignmentName, commitment, from, till, hours, timestamp)
   }
 
   const assignmentList = props.assignmentList
 
+  const assignmentOptions = assignmentList.map((assignment, index) => {
+    const container = {}
+
+    container.key = index
+    container.text = assignment.assignmentName
+    container.value = assignment.assignmentName
+
+    return container
+  })
+
   const { buttonStyling } = props
+
   return (
     <Centered>
       <Header>Add information about your allocation below</Header>
@@ -34,17 +45,14 @@ const AllocationDialogContent = props => {
             value={name} />
         </Form.Field>
         <Form.Field>
-          <label htmlFor='assignment'>Activity</label>
-          <Dropdown id='assignment'
-            search
+          <label htmlFor='assignmentName'>Assignment</label>
+          <Dropdown id='assignmentName'
             selection
+            fluid
             placeholder='Assignment name...'
-            name='assignment'
-            options={assignmentList.map((assignment) => (
-              <DropdownItem text={assignment.assignmentName} />
-            ))}
-            onChange={e => setActivity(e.target.value)}
-            value={assignment} />
+            options={assignmentOptions}
+            onChange={e => setAssignmentName(e.target.setAssignmentName)}
+          />
         </Form.Field>
         <Form.Field>
           <label htmlFor='commitment'>Commitment</label>
