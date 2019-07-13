@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { Button, Header, Form } from 'semantic-ui-react'
+import { Button, Header, Form, Dropdown, DropdownItem } from 'semantic-ui-react'
 import { Centered } from '@react-frontend-developer/react-layout-helpers'
 
 const AllocationDialogContent = props => {
   const [ name, setName ] = useState('')
-  const [ activity, setActivity ] = useState('')
+  const [ assignment, setActivity ] = useState('')
   const [ commitment, setCommitment ] = useState('')
   const [ from, setFrom ] = useState('')
   const [ till, setTill ] = useState('')
@@ -13,10 +13,12 @@ const AllocationDialogContent = props => {
 
   const onDone = () => {
     const { onDone } = props
-    console.log(name, activity, commitment, from, till, hours, timestamp)
+    console.log(name, assignment, commitment, from, till, hours, timestamp)
 
-    onDone && onDone(name, activity, commitment, from, till, hours, timestamp)
+    onDone && onDone(name, assignment, commitment, from, till, hours, timestamp)
   }
+
+  const assignmentList = props.assignmentList
 
   const { buttonStyling } = props
   return (
@@ -32,12 +34,17 @@ const AllocationDialogContent = props => {
             value={name} />
         </Form.Field>
         <Form.Field>
-          <label htmlFor='activity'>Activity</label>
-          <input id='activity'
-            placeholder='Activity name...'
-            name='activity'
+          <label htmlFor='assignment'>Activity</label>
+          <Dropdown id='assignment'
+            search
+            selection
+            placeholder='Assignment name...'
+            name='assignment'
+            options={assignmentList.map((assignment) => (
+              <DropdownItem text={assignment.assignmentName} />
+            ))}
             onChange={e => setActivity(e.target.value)}
-            value={activity} />
+            value={assignment} />
         </Form.Field>
         <Form.Field>
           <label htmlFor='commitment'>Commitment</label>

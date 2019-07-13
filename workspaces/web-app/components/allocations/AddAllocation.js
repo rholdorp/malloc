@@ -3,11 +3,13 @@ import { AllocationDialog } from './AllocationDialog'
 
 import { createAllocation } from './db'
 
-const AddAllocation = () => {
+const AddAllocation = (props) => {
   const [ open, setOpen ] = useState(false)
+  const assignmentList = props.assignments
 
   return (
     <AllocationDialog open={open}
+      assignmentList={assignmentList}
       buttonText='Add allocation...'
       modalTitle='Add allocation'
       buttonStyling={{ color: 'facebook' }}

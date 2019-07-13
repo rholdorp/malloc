@@ -163,9 +163,7 @@ const Home = () => {
       console.error(e)
     }
   }
-  useEffect(() => {
-    console.log('use effect')
-  })
+
   useEffect(() => {
     const uid = getCurrentlySignedUser()
     if ((!initialized) && (uid)) {
@@ -244,7 +242,9 @@ const Home = () => {
                 <AddAssignment />
               </Menu.Item>
               <Menu.Item>
-                <AddAllocation />
+                <AddAllocation
+                  assignments={assignments}
+                />
               </Menu.Item>
             </Menu.Menu>
           </Menu>
