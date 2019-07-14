@@ -104,7 +104,7 @@ const TeamMemberRow = props => (
 const AllocationTableRow = props => (
   <Table.Row>
     <Table.Cell>{props.name}</Table.Cell>
-    <Table.Cell>{props.activity}</Table.Cell>
+    <Table.Cell>{props.assignmentName}</Table.Cell>
     <Table.Cell>{props.commitment}</Table.Cell>
     <Table.Cell>{props.from}</Table.Cell>
     <Table.Cell>{props.till}</Table.Cell>
@@ -117,7 +117,7 @@ const AllocationTable = props => (
     <Table.Header>
       <Table.Row>
         <Table.HeaderCell>Team Member</Table.HeaderCell>
-        <Table.HeaderCell>Activity</Table.HeaderCell>
+        <Table.HeaderCell>Assignment</Table.HeaderCell>
         <Table.HeaderCell>Commitment</Table.HeaderCell>
         <Table.HeaderCell>Start Date</Table.HeaderCell>
         <Table.HeaderCell>End Date</Table.HeaderCell>
