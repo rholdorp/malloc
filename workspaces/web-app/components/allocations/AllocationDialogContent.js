@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Header, Form, Dropdown, DropdownItem } from 'semantic-ui-react'
+import { Button, Header, Form, Dropdown } from 'semantic-ui-react'
 import { Centered } from '@react-frontend-developer/react-layout-helpers'
 
 const AllocationDialogContent = props => {
@@ -51,7 +51,8 @@ const AllocationDialogContent = props => {
             fluid
             placeholder='Assignment name...'
             options={assignmentOptions}
-            onChange={e => setAssignmentName(e.target.setAssignmentName)}
+            onChange={e => setAssignmentName(e.target.textContent)}
+            value={assignmentName}
           />
         </Form.Field>
         <Form.Field>
