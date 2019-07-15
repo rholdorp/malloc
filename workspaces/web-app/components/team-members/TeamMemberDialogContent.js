@@ -1,9 +1,24 @@
 import React, { useState } from 'react'
-import { Button, Header, Form } from 'semantic-ui-react'
+import { Button, Header, Form, Dropdown } from 'semantic-ui-react'
 import { Centered } from '@react-frontend-developer/react-layout-helpers'
 import { DateInput } from 'semantic-ui-calendar-react';
 
 const TeamMemberDialogContent = props => {
+
+  const contractTypes = [
+    { key: 'payroll', value: 'payroll', text: 'payroll' },
+    { key: 'contractor', value: 'contractor', text: 'contractor' }
+  ]
+
+  const availabilityTypes = [
+    { key: 40, value: 40, text: 40 },
+    { key: 36, value: 36, text: 36 },
+    { key: 32, value: 32, text: 32 },
+    { key: 24, value: 24, text: 24 },
+    { key: 20, value: 20, text: 20 },
+    { key: 0, value: 0, text: 0 }
+  ]
+
   const [name, setName] = useState('')
   const [contract, setContract] = useState('')
   const [fromDate, setFromDate] = useState('')
@@ -20,11 +35,9 @@ const TeamMemberDialogContent = props => {
 
   const handleDateChange = (event, {name, value}) => {
     if (name === 'fromDate') {
-      console.log('from date = ', value)
       setFromDate(value)
     }
     if (name === 'tillDate') {
-      console.log('till date = ', value)
       setTillDate(value)
     }  
   }
@@ -35,18 +48,20 @@ const TeamMemberDialogContent = props => {
       <Form css={{ width: '80%', marginBottom: '20px' }}>
         <Form.Field>
           <label htmlFor='member-name'>Name</label>
-          <input id='member-name'
-            placeholder='Team Member Name...'
+          <input
+            placeholder='Enter team member name...'
             name='name'
             onChange={e => setName(e.target.value)}
             value={name} />
         </Form.Field>
         <Form.Field>
           <label htmlFor='contract'>Contract Type</label>
-          <input id='contract'
-            placeholder='#123456'
+          <Dropdown 
+            placeholder='worker contract'
+            selection
             name='contract'
-            onChange={e => setContract(e.target.value)}
+            options={contractTypes}
+            onChange={e => setContract(e.target.textContent)}
             value={contract} />
         </Form.Field>
         <Form.Field>
@@ -67,10 +82,12 @@ const TeamMemberDialogContent = props => {
         </Form.Field>
         <Form.Field>
           <label htmlFor='availability'>Availability</label>
-          <input id='availability'
-            placeholder='#123456'
+          <Dropdown 
+            selection
+            placeholder='Available hours per week '
             name='availability'
-            onChange={e => setAvailability(e.target.value)}
+            options={availabilityTypes}
+            onChange={e => setAvailability(e.target.textContent)}
             value={availability} />
         </Form.Field>
       </Form>
