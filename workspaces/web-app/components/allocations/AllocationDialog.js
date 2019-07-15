@@ -10,6 +10,7 @@ const AllocationDialog = ({
   modalTitle,
   open,
   assignmentList,
+  teamMemberList,
   onOpen = () => {},
   onDone = () => {},
   onCancel = () => {}
@@ -23,6 +24,7 @@ const AllocationDialog = ({
     onCancel={onCancel}>
     <AllocationDialogContent
       assignmentList={assignmentList}
+      teamMemberList={teamMemberList}
       onDone={onDone}
       buttonStyling={buttonStyling} />
   </Dialog>

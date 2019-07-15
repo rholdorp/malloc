@@ -6,17 +6,17 @@ import { DateInput } from 'semantic-ui-calendar-react';
 const TeamMemberDialogContent = props => {
 
   const contractTypes = [
-    { key: 'payroll', value: 'payroll', text: 'payroll' },
-    { key: 'contractor', value: 'contractor', text: 'contractor' }
+    { key: 'Payroll', value: 'Payroll', text: 'Payroll' },
+    { key: 'Contractor', value: 'Contractor', text: 'Contractor' }
   ]
 
   const availabilityTypes = [
-    { key: 40, value: 40, text: 40 },
-    { key: 36, value: 36, text: 36 },
-    { key: 32, value: 32, text: 32 },
-    { key: 24, value: 24, text: 24 },
-    { key: 20, value: 20, text: 20 },
-    { key: 0, value: 0, text: 0 }
+    { key: '40', value: '40', text: '40' },
+    { key: '36', value: '36', text: '36' },
+    { key: '32', value: '32', text: '32' },
+    { key: '24', value: '24', text: '24' },
+    { key: '20', value: '20', text: '20' },
+    { key: '0', value: '0', text: '0' }
   ]
 
   const [name, setName] = useState('')
@@ -49,7 +49,7 @@ const TeamMemberDialogContent = props => {
         <Form.Field>
           <label htmlFor='member-name'>Name</label>
           <input
-            placeholder='Enter team member name...'
+            placeholder='Enter team member name'
             name='name'
             onChange={e => setName(e.target.value)}
             value={name} />
@@ -68,14 +68,14 @@ const TeamMemberDialogContent = props => {
           <label htmlFor='fromDate'>From Date</label>
           <DateInput 
             name='fromDate'
-            placeholder='Date'
+            placeholder='From date'
             value={fromDate}
             onChange={handleDateChange} />
         </Form.Field>
         <Form.Field>
           <label htmlFor='tillDate'>Till date</label>
           <DateInput id='till-date'
-            placeholder='Date'
+            placeholder='Till date'
             name='tillDate'
             value={tillDate}
             onChange={handleDateChange} />

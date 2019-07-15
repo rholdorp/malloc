@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { getCurrentlySignedUser } from '../../services/firebase'
 import { FadingValueBox } from '../animations'
 import {
-  Icon,
   Grid,
   Dropdown,
   Table,
@@ -244,6 +243,7 @@ const Home = () => {
               <Menu.Item>
                 <AddAllocation
                   assignments={assignments}
+                  teamMembers={teamMembers}
                 />
               </Menu.Item>
             </Menu.Menu>
