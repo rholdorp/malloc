@@ -171,7 +171,10 @@ const Home = () => {
       setInitialized(true)
       setListeners()
     }
-  })
+    return () => {
+      
+    }
+  }, [])
 
   return (
     <FadingValueBox>

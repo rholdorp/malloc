@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Header, Form } from 'semantic-ui-react'
 import { Centered } from '@react-frontend-developer/react-layout-helpers'
+import { DateInput } from 'semantic-ui-calendar-react'
 
 const TeamMemberDialogContent = props => {
   const [name, setName] = useState('')
@@ -17,6 +18,9 @@ const TeamMemberDialogContent = props => {
 
   const { buttonStyling } = props
 
+  const HandleChange = (e,{name,value}) => {
+    console.log('Selected date = ', name, value)
+  }
   return (
     <Centered>
       <Header>Add information about the team member below</Header>
@@ -39,11 +43,16 @@ const TeamMemberDialogContent = props => {
         </Form.Field>
         <Form.Field>
           <label htmlFor='fromDate'>From Date</label>
-          <input id='from-date'
+          {/* <DateInput id='from-date'
             placeholder='#123456'
             name='fromDate'
-            onChange={e => setFromDate(e.target.value)}
-            value={fromDate} />
+            onChange={fromDate => HandleChange(fromDate)}
+            value={fromDate} /> */}
+          <DateInput
+          name='fromDate'
+          value={fromDate}
+          onChange={HandleChange} 
+          />
         </Form.Field>
         <Form.Field>
           <label htmlFor='tillDate'>Till date</label>

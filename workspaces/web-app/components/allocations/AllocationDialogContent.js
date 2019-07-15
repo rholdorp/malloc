@@ -20,15 +20,33 @@ const AllocationDialogContent = props => {
 
   const assignmentList = props.assignmentList
 
-  const assignmentOptions = assignmentList.map((assignment, index) => {
-    const container = {}
+  const getAssignmentOptions = assignmentList => {
+    return assignmentList.map(({ assignmentName,
+      assignmentName }, index) => { 
+      return {
+        key: index,
+        text: assignmentName,
+        value: assignmentName
+      }
+    })
+  }
 
-    container.key = index
-    container.text = assignment.assignmentName
-    container.value = assignment.assignmentName
+  useEffect(() => {
+    
+  }, [assignmentList])
 
-    return container
-  })
+
+  const getAssignmentOptionsMemo = useMemo(() => getAssignmentOptions(assignmentList), [assignmentList])
+  const assignmentOptions = getAssignmentOptionsMemo()
+
+  // const assignmentOptions = assignmentList.map(({ assignmentName,
+  //   assignmentName }, index) => { 
+  //   return {
+  //     key: index,
+  //     text: assignmentName,
+  //     value: assignmentName
+  //   }
+  // })
 
   const { buttonStyling } = props
 
