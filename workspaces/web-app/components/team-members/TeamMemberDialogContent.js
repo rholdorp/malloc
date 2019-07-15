@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Header, Form } from 'semantic-ui-react'
 import { Centered } from '@react-frontend-developer/react-layout-helpers'
+import { DateInput } from 'semantic-ui-calendar-react';
 
 const TeamMemberDialogContent = props => {
   const [name, setName] = useState('')
@@ -16,6 +17,17 @@ const TeamMemberDialogContent = props => {
   }
 
   const { buttonStyling } = props
+
+  const handleDateChange = (event, {name, value}) => {
+    if (name === 'fromDate') {
+      console.log('from date = ', value)
+      setFromDate(value)
+    }
+    if (name === 'tillDate') {
+      console.log('till date = ', value)
+      setTillDate(value)
+    }  
+  }
 
   return (
     <Centered>
@@ -39,19 +51,19 @@ const TeamMemberDialogContent = props => {
         </Form.Field>
         <Form.Field>
           <label htmlFor='fromDate'>From Date</label>
-          <input id='from-date'
-            placeholder='#123456'
+          <DateInput 
             name='fromDate'
-            onChange={e => setFromDate(e.target.value)}
-            value={fromDate} />
+            placeholder='Date'
+            value={fromDate}
+            onChange={handleDateChange} />
         </Form.Field>
         <Form.Field>
           <label htmlFor='tillDate'>Till date</label>
-          <input id='till-date'
-            placeholder='#123456'
+          <DateInput id='till-date'
+            placeholder='Date'
             name='tillDate'
-            onChange={e => setTillDate(e.target.value)}
-            value={tillDate} />
+            value={tillDate}
+            onChange={handleDateChange} />
         </Form.Field>
         <Form.Field>
           <label htmlFor='availability'>Availability</label>
