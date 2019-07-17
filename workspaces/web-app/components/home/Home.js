@@ -17,6 +17,8 @@ import {
   Tooltip
 } from 'recharts'
 
+import moment from 'moment'
+
 import {
   HomeGrid,
   HeaderGridItem,
@@ -29,7 +31,7 @@ import { AddAllocation } from '../allocations'
 import { AllocationForm } from '../allocations'
 import { AddAssignment } from '../assignments'
 import { AddTeamMember } from '../team-members'
-
+import { all } from 'rsvp';
 const data = [
   {
     name: 'Page A',
@@ -96,12 +98,13 @@ const TeamMemberList = props => (
 const TeamMemberRow = props => (
   <List.Content>
     <List.Header as='a'>{props.name}</List.Header>
-    <List.Description as='a'>{props.availability} hours per week from {props.fromDate} till {props.tillDate}</List.Description>
+    <List.Description as='a'>{props.availability} hours per week from {props.from} till {props.till}</List.Description>
   </List.Content>
 )
 
 const Home = () => {
   const [activeItem, setActiveItem] = useState('All')
+  const [filteredTeamMembers, setFilteredTeamMembers] = useState([])
   const [initialized, setInitialized] = useState(false)
   const [teamMembers, setTeamMembers] = useState([])
   const [assignments, setAssignments] = useState([])
@@ -142,8 +145,25 @@ const Home = () => {
       console.log('Home component mounted')
       setInitialized(true)
       setListeners()
+      // const weeknumber = moment("07-16-2019", "MM-DD-YYYY").week();
+      // console.log(weeknumber);
+      const testArray = Array(52).fill(0)
+      console.log('testArray', testArray)
     }
   })
+
+  const handleUserFilter = (e,{name}) => {
+    if(name === 'All') {
+      setFilteredTeamMembers(allocations)
+      console.log('all =', allocations)
+    }
+    if(name === 'Expected') {
+      const filtered = allocations.filter(allocation => allocation.commitment === 'Expected')
+      setFilteredTeamMembers(filtered)
+      console.log('expected = ', filtered)
+    }
+    console.log('filtered =', filteredTeamMembers)
+  }
 
   return (
     <FadingValueBox>
@@ -179,27 +199,27 @@ const Home = () => {
                   name='All'
                   active={activeItem === 'All'}
                   content='All'
-                  onClick={e => setActiveItem('All')}
+                  onClick={handleUserFilter}
                 />
                 <Menu.Item
-                  name='Leads'
-                  active={activeItem === 'Leads'}
-                  content='Leads'
-                  onClick={e => setActiveItem('Leads')}
+                  name='Expected'
+                  active={activeItem === 'Expected'}
+                  content='Expected'
+                  onClick={handleUserFilter}
                 />
                 <Menu.Item
                   name='Free'
                   active={activeItem === 'Free'}
                   content='Free'
-                  onClick={e => setActiveItem('Free')}
+                  onClick={handleUserFilter}
                 />
               </Menu>
             </Grid.Column>
             <Grid.Column stretched width={12}>
               <Segment>
                 <TeamMemberList>
-                  {teamMembers && teamMembers.map((teamMember, index) => (
-                    <TeamMemberRow key={index} {...teamMember} />
+                  {filteredTeamMembers && filteredTeamMembers.map((filteredTeamMembers, index) => (
+                    <TeamMemberRow key={index} {...filteredTeamMembers} />
                   ))}
                 </TeamMemberList>
               </Segment>
