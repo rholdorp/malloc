@@ -88,19 +88,8 @@ const organisationOptions = [
   { key: "Department2", value: "Department2", text: "Department2" }
 ];
 
-const TeamMemberList = props => (
-  <List divided relaxed>
-    <List.Item>{props.children}</List.Item>
-  </List>
-);
-
 const TeamMemberRow = props => (
-  <List.Content>
-    <List.Header as="a">{props.name}</List.Header>
-    <List.Description as="a">
-      {props.availability} hours per week from {props.from} till {props.till}
-    </List.Description>
-  </List.Content>
+    <p>{props.name}</p>
 );
 
 const Home = () => {
@@ -181,9 +170,9 @@ const Home = () => {
           Team Members
         </Accordion.Title>
         <Accordion.Content active={activeItem === 'All'}>
-          <p>
-            List of team members
-          </p>
+          {filteredTeamMembers && filteredTeamMembers.map((filteredTeamMembers, index) => (
+            <TeamMemberRow key={index} {...filteredTeamMembers} />
+            ))}
         </Accordion.Content>
 
         <Accordion.Title name="Expected"  active={activeItem === 'Expected'} onClick={handleUserFilter}>
@@ -191,9 +180,9 @@ const Home = () => {
           Expected Allocations
         </Accordion.Title>
         <Accordion.Content active={activeItem === 'Expected'}>
-          <p>
-            List of team members
-          </p>
+          {filteredTeamMembers && filteredTeamMembers.map((filteredTeamMembers, index) => (
+              <TeamMemberRow key={index} {...filteredTeamMembers} />
+              ))}
         </Accordion.Content>
 
         <Accordion.Title name="Free" active={activeItem === 'Free'} onClick={handleUserFilter}>
