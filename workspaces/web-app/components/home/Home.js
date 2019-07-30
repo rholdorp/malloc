@@ -89,7 +89,9 @@ const organisationOptions = [
 ];
 
 const TeamMemberRow = props => (
-    <p>{props.name}</p>
+    <List float>
+      <List.Item as='a'>{props.name}</List.Item>
+    </List>
 );
 
 const Home = () => {
