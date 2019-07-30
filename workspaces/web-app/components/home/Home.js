@@ -144,14 +144,30 @@ const Home = () => {
     }
   });
 
+  const getUniqueObjects = (obj, key) => {
+    return [...new Map(obj.map(item => [item[key], item])).values()]
+  }
+
   const handleUserFilter = (e, { name }) => {
     if (name === "All") {
-      setFilteredTeamMembers(allocations);
+      const filteredTeamMembers = teamMembers.map((teamMember) => {
+        const container = {}
+        container.name = teamMember.name
+
+        return container
+      })
+      const filtered = getUniqueObjects(filteredTeamMembers,'name')
+      setFilteredTeamMembers(filtered);
     }
     if (name === "Expected") {
-      const filtered = allocations.filter(
-        allocation => allocation.commitment === "Expected"
-      );
+      const filteredTeamMembers = allocations.map((allocation) => {
+        const container = {}
+        if (allocation.commitment === 'Expected'){
+          container.name = allocation.name
+          }
+        return container
+      })
+      const filtered = getUniqueObjects(filteredTeamMembers,'name')
       setFilteredTeamMembers(filtered);
     }
     setActiveItem(name)
