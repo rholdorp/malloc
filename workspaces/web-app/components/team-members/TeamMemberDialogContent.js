@@ -11,12 +11,12 @@ const TeamMemberDialogContent = props => {
   ]
 
   const availabilityTypes = [
-    { key: '40', value: '40', text: '40' },
-    { key: '36', value: '36', text: '36' },
-    { key: '32', value: '32', text: '32' },
-    { key: '24', value: '24', text: '24' },
-    { key: '20', value: '20', text: '20' },
-    { key: '0', value: '0', text: '0' }
+    { key: '40', value: 40, text: '40' },
+    { key: '36', value: 36, text: '36' },
+    { key: '32', value: 32, text: '32' },
+    { key: '24', value: 24, text: '24' },
+    { key: '20', value: 20, text: '20' },
+    { key: '0', value: 0, text: '0' }
   ]
 
   const [name, setName] = useState('')
@@ -40,6 +40,10 @@ const TeamMemberDialogContent = props => {
     if (name === 'tillDate') {
       setTillDate(value)
     }  
+  }
+
+  const handleChange = (event, {name, value}) => {
+    setAvailability(value) 
   }
 
   return (
@@ -87,7 +91,8 @@ const TeamMemberDialogContent = props => {
             placeholder='Available hours per week '
             name='availability'
             options={availabilityTypes}
-            onChange={e => setAvailability(e.target.textContent)}
+            value={availability}
+            onChange={handleChange}
             value={availability} />
         </Form.Field>
       </Form>

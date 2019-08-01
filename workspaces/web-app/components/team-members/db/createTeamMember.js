@@ -1,8 +1,27 @@
 import { getCurrentlySignedUser } from '../../../services/firebase'
+import moment from 'moment'
+
+const datesToWeeks = (from, till, availability) => {
+
+  const weeks = Array(53).fill(0);
+  const fromWk = moment(from, "DD-MM-YYYY").week();
+  const tillWk = moment(till, "DD-MM-YYYY").week();
+  
+  weeks.map((week, index) => {
+    if((fromWk<tillWk) && (index >= fromWk && index <= tillWk)){
+      weeks[index] = availability
+    } 
+  })
+
+  return weeks
+}
 
 const createTeamMember = async (name, contract, fromDate, tillDate, availability) => {
   try {
     const uid = getCurrentlySignedUser()
+
+    const wksAvailable = datesToWeeks(fromDate, tillDate, availability)
+
     if (uid) {
       const db = firebase.firestore()
       await db.collection('teamMembers').doc(name).set({
@@ -10,7 +29,7 @@ const createTeamMember = async (name, contract, fromDate, tillDate, availability
         contract,
         fromDate,
         tillDate,
-        availability
+        wksAvailable
       })
     } else {
       throw new Error('Having trouble accesing Firebase. Please try again...')
