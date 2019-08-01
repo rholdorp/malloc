@@ -5,6 +5,26 @@ const createTeamMember = async (name, contract, fromDate, tillDate, availability
     const uid = getCurrentlySignedUser()
     if (uid) {
       const db = firebase.firestore()
+      await db.collection('teamMembers').doc(name).set({
+        name,
+        contract,
+        fromDate,
+        tillDate,
+        availability
+      })
+    } else {
+      throw new Error('Having trouble accesing Firebase. Please try again...')
+    }
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+const updateTeamMember = async (name, contract, fromDate, tillDate, availability) => {
+  try {
+    const uid = getCurrentlySignedUser()
+    if (uid) {
+      const db = firebase.firestore()
       await db.collection('teamMembers').add({
         name,
         contract,

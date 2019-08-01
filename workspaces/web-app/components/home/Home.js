@@ -35,48 +35,226 @@ import { AddTeamMember } from "../team-members";
 import { all } from "rsvp";
 const data = [
   {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400
+    week: 'wk 1',
+    committed: 40,
+    expected: 0
   },
   {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210
+    week: 'wk 2',
+    committed: 40,
+    expected: 0
   },
   {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290
+    week: 'wk 3',
+    committed: 40,
+    expected: 0
   },
   {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000
+    week: 'wk 4',
+    committed: 40,
+    expected: 0
   },
   {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181
+    week: 'wk 5',
+    committed: 40,
+    expected: 0
   },
   {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500
+    week: 'wk 6',
+    committed: 20,
+    expected: 20
   },
   {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100
+    week: 'wk 7',
+    committed: 20,
+    expected: 20
+  },
+  {
+    week: 'wk 8',
+    committed: 20,
+    expected: 20
+  },
+  {
+    week: 'wk 9',
+    committed: 20,
+    expected: 20
+  },
+  {
+    week: 'wk 10',
+    committed: 20,
+    expected: 20
+  },
+  {
+    week: 'wk 11',
+    committed: 10,
+    expected: 10
+  },
+  {
+    week: 'wk 12',
+    committed: 10,
+    expected: 10
+  },
+  {
+    week: 'wk 13',
+    committed: 30,
+    expected: 0
+  },
+  {
+    week: 'wk14',
+    committed: 40,
+    expected: 0
+  },
+  {
+    week: 'wk 15',
+    committed: 40,
+    expected: 0
+  },
+  {
+    week: 'wk 16',
+    committed: 40,
+    expected: 0
+  },
+  {
+    week: 'wk 17',
+    committed: 20,
+    expected: 20
+  },
+  {
+    week: 'wk 18',
+    committed: 20,
+    expected: 20
+  },
+  {
+    week: 'wk 19',
+    committed: 20,
+    expected: 20
+  },
+  {
+    week: 'wk 20',
+    committed: 20,
+    expected: 20
+  },
+  {
+    week: 'wk 21',
+    committed: 20,
+    expected: 20
+  },
+  {
+    week: 'wk 22',
+    committed: 10,
+    expected: 10
+  },
+  {
+    week: 'wk 23',
+    committed: 10,
+    expected: 10
+  },
+  {
+    week: 'wk 24',
+    committed: 30,
+    expected: 0
+  },
+  {
+    week: 'wk 25',
+    committed: 40,
+    expected: 0
+  },
+  {
+    week: 'wk 26',
+    committed: 40,
+    expected: 0
+  },
+  {
+    week: 'wk 27',
+    committed: 40,
+    expected: 0
+  },
+  {
+    week: 'wk 28',
+    committed: 20,
+    expected: 20
+  },
+  {
+    week: 'wk 29',
+    committed: 20,
+    expected: 20
+  },
+  {
+    week: 'wk 30',
+    committed: 20,
+    expected: 20
+  },
+  {
+    week: 'wk 31',
+    committed: 20,
+    expected: 20
+  },
+  {
+    week: 'wk 32',
+    committed: 20,
+    expected: 20
+  },
+  {
+    week: 'wk 33',
+    committed: 10,
+    expected: 10
+  },
+  {
+    week: 'wk 34',
+    committed: 10,
+    expected: 10
+  },
+  {
+    week: 'wk 35',
+    committed: 30,
+    expected: 0
   }
 ];
+
+// const data = [
+//   {
+//     name: "Page A",
+//     uv: 4000,
+//     pv: 2400,
+//     amt: 2400
+//   },
+//   {
+//     name: "Page B",
+//     uv: 3000,
+//     pv: 1398,
+//     amt: 2210
+//   },
+//   {
+//     name: "Page C",
+//     uv: 2000,
+//     pv: 9800,
+//     amt: 2290
+//   },
+//   {
+//     name: "Page D",
+//     uv: 2780,
+//     pv: 3908,
+//     amt: 2000
+//   },
+//   {
+//     name: "Page E",
+//     uv: 1890,
+//     pv: 4800,
+//     amt: 2181
+//   },
+//   {
+//     name: "Page F",
+//     uv: 2390,
+//     pv: 3800,
+//     amt: 2500
+//   },
+//   {
+//     name: "Page G",
+//     uv: 3490,
+//     pv: 4300,
+//     amt: 2100
+//   }
+// ];
 
 const yearOptions = [
   { key: "2018", value: "2018", text: "2018" },
@@ -222,6 +400,9 @@ const Home = () => {
               <AddAssignment />
             </Menu.Item>
             <Menu.Item>
+              <AddTeamMember />
+            </Menu.Item>
+            <Menu.Item>
               <AddAllocation
                 assignments={assignments}
                 teamMembers={teamMembers}
@@ -234,7 +415,7 @@ const Home = () => {
 
       <ChartsGridItem>
         <AreaChart
-          width={1000}
+          width={700}
           height={400}
           data={data}
           margin={{
@@ -245,29 +426,22 @@ const Home = () => {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="week" />
           <YAxis />
           <Tooltip />
           <Area
             type="monotone"
-            dataKey="uv"
+            dataKey="committed"
             stackId="1"
             stroke="#8884d8"
             fill="#8884d8"
           />
           <Area
             type="monotone"
-            dataKey="pv"
+            dataKey="expected"
             stackId="1"
             stroke="#82ca9d"
             fill="#82ca9d"
-          />
-          <Area
-            type="monotone"
-            dataKey="amt"
-            stackId="1"
-            stroke="#ffc658"
-            fill="#ffc658"
           />
         </AreaChart>
       </ChartsGridItem>
