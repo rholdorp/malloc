@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { Button, Header, Form, Dropdown } from 'semantic-ui-react'
 import { Centered } from '@react-frontend-developer/react-layout-helpers'
-import { DateInput } from 'semantic-ui-calendar-react';
+import { DateInput } from 'semantic-ui-calendar-react'
 
 const TeamMemberDialogContent = props => {
-
   const contractTypes = [
     { key: 'Payroll', value: 'Payroll', text: 'Payroll' },
     { key: 'Contractor', value: 'Contractor', text: 'Contractor' }
@@ -33,17 +32,17 @@ const TeamMemberDialogContent = props => {
 
   const { buttonStyling } = props
 
-  const handleDateChange = (event, {name, value}) => {
+  const handleDateChange = (event, { name, value }) => {
     if (name === 'fromDate') {
       setFromDate(value)
     }
     if (name === 'tillDate') {
       setTillDate(value)
-    }  
+    }
   }
 
-  const handleChange = (event, {name, value}) => {
-    setAvailability(value) 
+  const handleChange = (event, { name, value }) => {
+    setAvailability(value)
   }
 
   return (
@@ -60,7 +59,7 @@ const TeamMemberDialogContent = props => {
         </Form.Field>
         <Form.Field>
           <label htmlFor='contract'>Contract Type</label>
-          <Dropdown 
+          <Dropdown
             placeholder='worker contract'
             selection
             name='contract'
@@ -70,7 +69,7 @@ const TeamMemberDialogContent = props => {
         </Form.Field>
         <Form.Field>
           <label htmlFor='fromDate'>From Date</label>
-          <DateInput 
+          <DateInput
             name='fromDate'
             placeholder='From date'
             value={fromDate}
@@ -86,14 +85,14 @@ const TeamMemberDialogContent = props => {
         </Form.Field>
         <Form.Field>
           <label htmlFor='availability'>Availability</label>
-          <Dropdown 
+          <Dropdown
             selection
             placeholder='Available hours per week '
             name='availability'
             options={availabilityTypes}
             value={availability}
             onChange={handleChange}
-            value={availability} />
+          />
         </Form.Field>
       </Form>
       <Button {...buttonStyling} onClick={onDone}>Done</Button>

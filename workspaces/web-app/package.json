@@ -12,6 +12,7 @@
     "@react-frontend-developer/buffers": "^1.0.17",
     "@react-frontend-developer/css-grid-helper": "^1.0.17",
     "@react-frontend-developer/react-layout-helpers": "^1.0.17",
+    "babel-eslint": "^10.0.2",
     "babel-polyfill": "^6.26.0",
     "moments": "^0.0.2",
     "next": "^8.0.0",
