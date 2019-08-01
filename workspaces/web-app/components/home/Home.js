@@ -32,7 +32,7 @@ import { AddAllocation } from "../allocations";
 import { AllocationForm } from "../allocations";
 import { AddAssignment } from "../assignments";
 import { AddTeamMember } from "../team-members";
-import { all } from "rsvp";
+
 const data = [
   {
     week: 'wk 1',
