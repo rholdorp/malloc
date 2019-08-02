@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { Button, Header, Form, Dropdown } from 'semantic-ui-react'
 import { Centered } from '@react-frontend-developer/react-layout-helpers'
-import { DateInput } from 'semantic-ui-calendar-react';
+import { DateInput } from 'semantic-ui-calendar-react'
 
 const AllocationDialogContent = props => {
-
   const [ name, setName ] = useState('')
   const [ assignmentName, setAssignmentName ] = useState('')
   const [ commitment, setCommitment ] = useState('')
@@ -18,12 +17,12 @@ const AllocationDialogContent = props => {
   ]
 
   const allocationTime = [
-    { key: '40', value: '40', text: '40' },
-    { key: '36', value: '36', text: '36' },
-    { key: '32', value: '32', text: '32' },
-    { key: '24', value: '24', text: '24' },
-    { key: '20', value: '20', text: '20' },
-    { key: '0', value: '0', text: '0' }
+    { key: '40', value: 40, text: '40' },
+    { key: '36', value: 36, text: '36' },
+    { key: '32', value: 32, text: '32' },
+    { key: '24', value: 24, text: '24' },
+    { key: '20', value: 20, text: '20' },
+    { key: '0', value: 0, text: '0' }
   ]
 
   const onDone = () => {
@@ -58,13 +57,16 @@ const AllocationDialogContent = props => {
 
   const { buttonStyling } = props
 
-  const handleDateChange = (event, {name, value}) => {
+  const handleDateChange = (event, { name, value }) => {
     if (name === 'from') {
       setFrom(value)
     }
     if (name === 'till') {
       setTill(value)
-    }  
+    }
+  }
+  const handleChange = (event, { name, value }) => {
+    setHours(value)
   }
 
   return (
@@ -73,7 +75,7 @@ const AllocationDialogContent = props => {
       <Form css={{ width: '80%', marginBottom: '20px' }}>
         <Form.Field>
           <label htmlFor='name'>Name</label>
-          <Dropdown 
+          <Dropdown
             placeholder='Select team member'
             selection
             name='name'
@@ -83,7 +85,7 @@ const AllocationDialogContent = props => {
         </Form.Field>
         <Form.Field>
           <label htmlFor='assignmentName'>Assignment</label>
-          <Dropdown 
+          <Dropdown
             selection
             placeholder='Assignment name...'
             options={assignmentOptions}
@@ -93,7 +95,7 @@ const AllocationDialogContent = props => {
         </Form.Field>
         <Form.Field>
           <label htmlFor='commitment'>Commitment</label>
-          <Dropdown 
+          <Dropdown
             placeholder='Level of commitment'
             selection
             name='commitment'
@@ -119,12 +121,12 @@ const AllocationDialogContent = props => {
         </Form.Field>
         <Form.Field>
           <label htmlFor='hours'>hours</label>
-          <Dropdown 
+          <Dropdown
             selection
             placeholder='Hours per week allocated'
             name='hours'
             options={allocationTime}
-            onChange={e => setHours(e.target.textContent)}
+            onChange={handleChange}
             value={hours} />
         </Form.Field>
       </Form>
