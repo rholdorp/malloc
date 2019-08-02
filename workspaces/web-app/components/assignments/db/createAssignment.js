@@ -5,7 +5,7 @@ const createAssignment = async (assignmentName, assignmentNumber, assignmentPhas
     const uid = getCurrentlySignedUser()
     if (uid) {
       const db = firebase.firestore()
-      await db.collection('assignments').add({
+      await db.collection('assignments').doc(assignmentName).set({
         assignmentName,
         assignmentNumber,
         assignmentPhase,
